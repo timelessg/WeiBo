@@ -27,13 +27,11 @@
     if (!_tabBar) {
         WBTabBarItem *itemHome = [WBTabBarItem initWithTitle:@"首页" imageNormal:@"tabbar_home" imageSelected:@"tabbar_home_selected" type:TarBarItemTypeTitle];
         WBTabBarItem *itemMessage = [WBTabBarItem initWithTitle:@"消息" imageNormal:@"tabbar_message_center" imageSelected:@"tabbar_message_center_selected" type:TarBarItemTypeTitle];
-        
         WBTabBarItem *itemCenter = [WBTabBarItem initWithTitle:nil imageNormal:@"tabbar_compose_icon_add" imageSelected:@"tabbar_compose_icon_add_highlighted" type:TarBarItemTypeIco];
-        
         WBTabBarItem *itemExplore = [WBTabBarItem initWithTitle:@"发现" imageNormal:@"tabbar_discover" imageSelected:@"tabbar_discover_selected" type:TarBarItemTypeTitle];
         WBTabBarItem *itemMy = [WBTabBarItem initWithTitle:@"我" imageNormal:@"tabbar_profile" imageSelected:@"tabbar_profile_selected" type:TarBarItemTypeTitle];
         
-        _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 48 - 5, kSCREENWIDTH, 48 + 5) items:@[itemHome,itemMessage,itemCenter,itemExplore,itemMy] selected:^(NSUInteger itemIndex) {
+        _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 48, kSCREENWIDTH, 48) items:@[itemHome,itemMessage,itemCenter,itemExplore,itemMy] selected:^(NSUInteger itemIndex) {
             
         }];
     }
