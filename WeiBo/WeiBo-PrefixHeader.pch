@@ -1,0 +1,17 @@
+//
+//  WeiBo-PrefixHeader.pch
+//  WeiBo
+//
+//  Created by 郭锐 on 15/12/2.
+//  Copyright © 2015年 Garry. All rights reserved.
+//
+
+#ifndef WeiBo_PrefixHeader_pch
+#define WeiBo_PrefixHeader_pch
+#import <Masonry.h>
+#import <BlocksKit+UIKit.h>
+#import "UIColor+Hex.h"
+
+#define kSCREENWIDTH   [UIScreen mainScreen].bounds.size.width
+#define KSCREENHEIGHT  [UIScreen mainScreen].bounds.size.height
+#endif /* WeiBo_PrefixHeader_pch */
