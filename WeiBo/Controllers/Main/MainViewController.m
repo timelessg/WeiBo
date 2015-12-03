@@ -8,6 +8,9 @@
 
 #import "MainViewController.h"
 #import "WBTabBar.h"
+#import "WBWebAuthViewController.h"
+#import "WBUser.h"
+#import "NetAPIManager.h"
 
 @interface MainViewController ()
 @property(nonatomic,strong)WBTabBar *tabBar;
@@ -17,11 +20,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self showAuth];
+    
+    [NetAPIManager getPublicTimelineWithPage:1 andBlock:^(id data, NSError *error) {
+        
+    }];
+    
     UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default-667h"]];
     bg.frame = CGRectMake(0, 50, kSCREENWIDTH, KSCREENHEIGHT);
     [self.view addSubview:bg];
     
     [self.view addSubview:self.tabBar];
+}
+-(void)showAuth{
+    if (![WBUser isLogin]) {
+        WBWebAuthViewController *authVC = [[WBWebAuthViewController alloc] init];
+        authVC.returnAuthInfo = ^(WBUser *user){
+            if ([user archive]) {
+                
+            }
+        };
+        [self presentViewController:authVC animated:YES completion:nil];
+    }
 }
 -(WBTabBar *)tabBar{
     if (!_tabBar) {

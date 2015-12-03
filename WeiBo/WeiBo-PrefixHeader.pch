@@ -10,7 +10,17 @@
 #define WeiBo_PrefixHeader_pch
 #import <Masonry.h>
 #import <BlocksKit+UIKit.h>
+#import <MJExtension.h>
+#import <TMCache.h>
+#import <ReactiveCocoa.h>
 #import "UIColor+Hex.h"
+
+#define kUserCache          @"userCache"
+
+#define BaseURL             @"https://api.weibo.com/2/"
+#define TimelineIds         @"statuses/friends_timeline/ids.json"
+#define TimelinePublic      @"statuses/public_timeline.json"
+
 
 #define kSCREENWIDTH   [UIScreen mainScreen].bounds.size.width
 #define KSCREENHEIGHT  [UIScreen mainScreen].bounds.size.height

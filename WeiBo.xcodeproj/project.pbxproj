@@ -2735,6 +2735,11 @@
 		6510B5BE1C0F3102000F1D39 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6510AB1E1C0F3101000F1D39 /* yw_1222.jpg */; };
 		6510B5C21C0F377F000F1D39 /* WBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510B5C11C0F377F000F1D39 /* WBTabBar.m */; };
 		6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6573659A1C100F630066BC31 /* WBNavicationBar.m */; };
+		6573659F1C1020080066BC31 /* WBWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6573659E1C1020080066BC31 /* WBWebAuthViewController.m */; };
+		657365A21C1020B40066BC31 /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A11C1020B40066BC31 /* WBUser.m */; };
+		657365A71C103DDA0066BC31 /* WBNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A61C103DDA0066BC31 /* WBNetAPIClient.m */; };
+		657365AA1C103FE10066BC31 /* NetAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A91C103FE10066BC31 /* NetAPIManager.m */; };
+		657365AD1C10491D0066BC31 /* WBStatuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365AC1C10491D0066BC31 /* WBStatuse.m */; };
 		65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */; };
 		E7EA47CBA4011462486EC877 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2CF096D91AF8E7A6D39F63 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -5480,6 +5485,16 @@
 		6510B5C11C0F377F000F1D39 /* WBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBar.m; sourceTree = "<group>"; };
 		657365991C100F630066BC31 /* WBNavicationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNavicationBar.h; sourceTree = "<group>"; };
 		6573659A1C100F630066BC31 /* WBNavicationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNavicationBar.m; sourceTree = "<group>"; };
+		6573659D1C1020080066BC31 /* WBWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWebAuthViewController.h; sourceTree = "<group>"; };
+		6573659E1C1020080066BC31 /* WBWebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBWebAuthViewController.m; sourceTree = "<group>"; };
+		657365A01C1020B40066BC31 /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
+		657365A11C1020B40066BC31 /* WBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUser.m; sourceTree = "<group>"; };
+		657365A51C103DDA0066BC31 /* WBNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNetAPIClient.h; sourceTree = "<group>"; };
+		657365A61C103DDA0066BC31 /* WBNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNetAPIClient.m; sourceTree = "<group>"; };
+		657365A81C103FE10066BC31 /* NetAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAPIManager.h; sourceTree = "<group>"; };
+		657365A91C103FE10066BC31 /* NetAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIManager.m; sourceTree = "<group>"; };
+		657365AB1C10491D0066BC31 /* WBStatuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatuse.h; sourceTree = "<group>"; };
+		657365AC1C10491D0066BC31 /* WBStatuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatuse.m; sourceTree = "<group>"; };
 		65E7E9591C0F551B000BC94C /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		9E2CF096D91AF8E7A6D39F63 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5563,6 +5578,7 @@
 		6510A0651C0F29C5000F1D39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6573659C1C1020080066BC31 /* Login */,
 				6510A0781C0F2C39000F1D39 /* Base */,
 				6510A0741C0F2BC6000F1D39 /* Main */,
 			);
@@ -5572,6 +5588,10 @@
 		6510A0661C0F29C5000F1D39 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				657365A01C1020B40066BC31 /* WBUser.h */,
+				657365A11C1020B40066BC31 /* WBUser.m */,
+				657365AB1C10491D0066BC31 /* WBStatuse.h */,
+				657365AC1C10491D0066BC31 /* WBStatuse.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -8348,6 +8368,10 @@
 		6510A06F1C0F29C5000F1D39 /* NetManager */ = {
 			isa = PBXGroup;
 			children = (
+				657365A81C103FE10066BC31 /* NetAPIManager.h */,
+				657365A91C103FE10066BC31 /* NetAPIManager.m */,
+				657365A51C103DDA0066BC31 /* WBNetAPIClient.h */,
+				657365A61C103DDA0066BC31 /* WBNetAPIClient.m */,
 			);
 			path = NetManager;
 			sourceTree = "<group>";
@@ -8396,6 +8420,15 @@
 				6573659A1C100F630066BC31 /* WBNavicationBar.m */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		6573659C1C1020080066BC31 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6573659D1C1020080066BC31 /* WBWebAuthViewController.h */,
+				6573659E1C1020080066BC31 /* WBWebAuthViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -11236,14 +11269,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657365A71C103DDA0066BC31 /* WBNetAPIClient.m in Sources */,
 				6510A07B1C0F2C41000F1D39 /* BaseNavicationController.m in Sources */,
 				6510A07E1C0F2C4F000F1D39 /* BaseViewController.m in Sources */,
 				6510A0721C0F29C5000F1D39 /* UIView+Extension.m in Sources */,
+				657365AA1C103FE10066BC31 /* NetAPIManager.m in Sources */,
 				6510A0531C0F2959000F1D39 /* AppDelegate.m in Sources */,
 				6510A0501C0F2959000F1D39 /* main.m in Sources */,
 				6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */,
 				65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */,
+				657365A21C1020B40066BC31 /* WBUser.m in Sources */,
 				6510B5C21C0F377F000F1D39 /* WBTabBar.m in Sources */,
+				6573659F1C1020080066BC31 /* WBWebAuthViewController.m in Sources */,
+				657365AD1C10491D0066BC31 /* WBStatuse.m in Sources */,
 				6510A0771C0F2BD0000F1D39 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
