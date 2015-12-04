@@ -32,4 +32,6 @@ typedef NS_ENUM(NSUInteger,NetWorkMethod) {
                  showError:(BOOL)showError
                   useCache:(BOOL)useCache
                   andBlock:(void (^)(id data, NSError *error))block;
+-(void)cancelTask;
+-(void)removeAllCache;
 @end

@@ -47,6 +47,7 @@
     switch (methodType) {
         case NetWorkMethodGet:{
             [self GET:aPath parameters:mutableDic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+//                NSLog(@"%@",[[NSString alloc] initWithData:[operation responseData] encoding:NSUTF8StringEncoding]);
                 if ([responseObject[@"status"] integerValue] >= 0) {
                     if (useCache) {
                         NSCachedURLResponse *cachedURLResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:operation.request];

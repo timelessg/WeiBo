@@ -10,6 +10,12 @@
 
 #define USERPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"user.dat"]
 
+@implementation WBUserInfo
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{@"desc":@"description"};
+}
+@end
+
 @implementation WBUser
 MJExtensionCodingImplementation
 +(BOOL)isLogin{

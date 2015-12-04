@@ -19,14 +19,16 @@ typedef NS_ENUM(NSUInteger,TarBarItemType) {
 @property(nonatomic,copy)NSString *imageNormal;
 @property(nonatomic,copy)NSString *imageSelected;
 @property(nonatomic,assign)TarBarItemType type;
+@property(nonatomic,assign)BOOL disSelected;
 @end
 
 @interface WBTabBarButton : UIButton
+@property(nonatomic,strong)WBTabBarItem *barItem;
 -(instancetype)initWithBarItem:(WBTabBarItem *)barItem;
 @end
 
 typedef void(^SelectItemBlock)(NSUInteger itemIndex);
 
 @interface WBTabBar : FXBlurView
--(instancetype)initWithFrame:(CGRect)frame items:(NSArray *)items selected:(SelectItemBlock)selected;
+-(instancetype)initWithFrame:(CGRect)frame items:(NSArray <WBTabBarItem *> *)items selected:(SelectItemBlock)selected;
 @end

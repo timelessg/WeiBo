@@ -54,7 +54,7 @@
         NSError *error;
         NSDictionary *infoDic = [NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingMutableContainers error:&error];
         WBUser *user = [WBUser new];
-        user = [user mj_setKeyValues:infoDic];
+        user = [WBUser mj_objectWithKeyValues:infoDic];
         [self dismissViewControllerAnimated:YES completion:^{
             webView = nil;
             if (!error) {

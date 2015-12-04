@@ -22,13 +22,13 @@
 @implementation WBTabBarButton
 -(instancetype)initWithBarItem:(WBTabBarItem *)barItem{
     if (self = [super init]) {
+        self.barItem = barItem;
         if (barItem.type == TarBarItemTypeTitle) {
             self.backgroundColor = [UIColor clearColor];
             
             [self setImage:[UIImage imageNamed:barItem.imageNormal] forState:UIControlStateNormal];
             [self setImage:[UIImage imageNamed:barItem.imageSelected] forState:UIControlStateSelected];
             [self setImage:[UIImage imageNamed:barItem.imageSelected] forState:UIControlStateHighlighted];
-
             
             self.imageEdgeInsets = UIEdgeInsetsMake(-5,13,8,self.titleLabel.bounds.size.width);
             
@@ -46,7 +46,7 @@
             self.layer.cornerRadius  = 5.0f;
             [self setBackgroundColor:[UIColor colorWithHex:0xff8200]];
             [self setImage:[UIImage imageNamed:barItem.imageNormal] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:barItem.imageSelected] forState:UIControlStateSelected];
+            [self setImage:[UIImage imageNamed:barItem.imageSelected] forState:UIControlStateHighlighted];
         }
     }
     return self;
@@ -60,7 +60,7 @@
 @end
 
 @implementation WBTabBar
--(instancetype)initWithFrame:(CGRect)frame items:(NSArray *)items selected:(SelectItemBlock)selected{
+-(instancetype)initWithFrame:(CGRect)frame items:(NSArray <WBTabBarItem *> *)items selected:(SelectItemBlock)selected{
     if (self = [super initWithFrame:frame]) {
         self.items = items;
         self.selected = selected;
@@ -71,16 +71,17 @@
 -(void)setupView{
     CGFloat itemWidth = kSCREENWIDTH / self.items.count;
     CGFloat itemHeight = self.bounds.size.height;
+    self.backgroundColor = [UIColor whiteColor];
     
     self.blurRadius = 40;
     self.tintColor  = [UIColor clearColor];
-    self.dynamic    = NO;
+    self.dynamic    = YES;
 
     self.layer.shadowColor   = [UIColor grayColor].CGColor;
     self.layer.shadowOffset  = CGSizeMake(0,1);
     self.layer.shadowOpacity = 0.6;
     self.layer.shadowRadius  = 2;
-    self.clipsToBounds = NO;
+    self.clipsToBounds       = NO;
     
     for (int i = 0; i < self.items.count ; i ++) {
         WBTabBarItem *item = self.items[i];
@@ -102,12 +103,17 @@
             make.size.mas_equalTo(CGSizeMake(itemHeight, itemHeight - 8));
         }];
         if (i == 0) barButton.selected = YES;
-        [barButton bk_addEventHandler:^(UIButton *sender) {
-            for (int i = 0; i < self.items.count; i ++) {
-                UIButton *btn = [self viewWithTag:100 + i];
-                btn.selected = NO;
-            }
+        [barButton bk_addEventHandler:^(WBTabBarButton *sender) {
             sender.selected = YES;
+            if (!sender.barItem.disSelected) {
+                for (int i = 0; i < self.items.count; i ++) {
+                    if (sender.tag != i + 100) {
+                        UIButton *btn = [self viewWithTag:100 + i];
+                        btn.selected = NO;
+                    }
+                }
+            }
+            if (self.selected) self.selected(sender.tag - 100);
         } forControlEvents:UIControlEventTouchUpInside];
     }
 }

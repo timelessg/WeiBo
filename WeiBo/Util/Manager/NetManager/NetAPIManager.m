@@ -11,7 +11,22 @@
 #import "WBStatuse.h"
 
 @implementation NetAPIManager
-+(void)getPublicTimelineWithPage:(NSUInteger)page andBlock:(void (^)(id, NSError *))block{
++(void)getHomeTimeLineWithPage:(NSUInteger)page andBlock:(void (^)(id, NSError *))block{
+    [[WBNetAPIClient shareClient] requestDataWithPath:TimelineHome params:@{@"count":@(20),@"page":@(page),@"feature":@0,@"trim_user":@0} methodType:NetWorkMethodGet andBlock:^(id data, NSError *error) {
+        if (!error) {
+            NSArray *dataArray = data[@"statuses"];
+            __block NSMutableArray *tmpArray = [NSMutableArray array];
+            [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                WBStatuse *statue = [WBStatuse mj_objectWithKeyValues:obj];
+                [tmpArray addObject:statue];
+            }];
+            block(tmpArray,nil);
+        }else{
+            block(nil,error);
+        }
+    }];
+}
++(void)getPublicTimeLineWithPage:(NSUInteger)page andBlock:(void (^)(id, NSError *))block{
     [[WBNetAPIClient shareClient] requestDataWithPath:TimelinePublic params:@{@"count":@(20),@"page":@(page)} methodType:NetWorkMethodGet andBlock:^(id data, NSError *error) {
         if (!error) {
             NSArray *dataArray = data[@"statuses"];

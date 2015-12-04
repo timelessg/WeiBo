@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NetAPIManager : NSObject
-+(void)getPublicTimelineWithPage:(NSUInteger)page andBlock:(void (^)(id data, NSError *error))block;
++(void)getHomeTimeLineWithPage:(NSUInteger)page andBlock:(void (^)(id data, NSError *error))block;
++(void)getPublicTimeLineWithPage:(NSUInteger)page andBlock:(void (^)(id data, NSError *error))block;
 @end

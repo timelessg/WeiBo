@@ -15,7 +15,7 @@
 @property(nonatomic,copy)NSString *province;
 @property(nonatomic,copy)NSString *city;
 @property(nonatomic,copy)NSString *location;
-@property(nonatomic,copy)NSString *description;
+@property(nonatomic,copy)NSString *wbdescription;
 @property(nonatomic,copy)NSString *url;
 @property(nonatomic,copy)NSString *profile_image_url;
 @property(nonatomic,copy)NSString *domain;
@@ -36,6 +36,15 @@
 @property(nonatomic,assign)BOOL follow_me;
 @property(nonatomic,assign)NSUInteger online_status;
 @property(nonatomic,assign)NSUInteger bi_followers_count;
+@property(nonatomic,copy)NSString *lang;
+@property(nonatomic,assign)NSUInteger star;
+@property(nonatomic,assign)NSUInteger mbtype;
+@property(nonatomic,assign)NSUInteger mbrank;
+@property(nonatomic,assign)NSUInteger block_word;
+@property(nonatomic,assign)NSUInteger block_app;
+@property(nonatomic,assign)NSUInteger credit_score;
+@property(nonatomic,assign)NSUInteger user_ability;
+@property(nonatomic,assign)NSUInteger urank;
 @end
 
 @interface WBUser : NSObject

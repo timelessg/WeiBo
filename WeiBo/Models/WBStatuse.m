@@ -8,8 +8,16 @@
 
 #import "WBStatuse.h"
 
+@implementation WBPic
+
+@end
+
+@implementation WBGeo
+
+@end
+
 @implementation WBStatuse
 +(NSDictionary *)mj_objectClassInArray{
-    return @{@"user":@"WBUserInfo"};
+    return @{@"pic_urls":@"WBPic"};
 }
 @end

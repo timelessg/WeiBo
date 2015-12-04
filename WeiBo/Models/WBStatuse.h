@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "WBUser.h"
 
+@interface WBPic : NSObject
+@property(nonatomic,copy)NSString *thumbnail_pic;
+@end
+
 @interface WBGeo : NSObject
 
 @end
@@ -23,6 +27,7 @@
 @property(nonatomic,copy)NSString *in_reply_to_status_id;
 @property(nonatomic,copy)NSString *in_reply_to_user_id;
 @property(nonatomic,copy)NSString *in_reply_to_screen_name;
+@property(nonatomic,strong)NSArray *pic_urls;
 @property(nonatomic,copy)NSString *thumbnail_pic;
 @property(nonatomic,copy)NSString *bmiddle_pic;
 @property(nonatomic,copy)NSString *original_pic;
@@ -33,5 +38,7 @@
 @property(nonatomic,assign)NSUInteger comments_count;
 @property(nonatomic,assign)NSUInteger attitudes_count;
 @property(nonatomic,assign)NSUInteger mlevel;
-
+@property(nonatomic,assign)NSUInteger biz_feature;
+@property(nonatomic,assign)NSUInteger userType;
+@property(nonatomic,strong)NSArray *darwin_tags;
 @end
