@@ -25,6 +25,7 @@
             [self setTitleColor:barItem.textColorNormal forState:UIControlStateNormal];
             [self setTitleColor:barItem.textColorHighlighted forState:UIControlStateHighlighted];
             [self setTitle:barItem.title forState:UIControlStateNormal];
+            self.titleLabel.textAlignment = NSTextAlignmentCenter;
         }
         
         if (barItem.type == WBNavBarItemTypeButton) {
@@ -61,7 +62,6 @@
         self.layer.shadowRadius  = 2;
         self.clipsToBounds       = NO;
         
-        [self.titleBarItem addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
@@ -69,6 +69,10 @@
     if ((_leftBarItem != leftBarItem) && leftBarItem) {
         _leftBarItem = leftBarItem;
         WBNavBarButton *barButton = [[WBNavBarButton alloc] initWithBarItem:leftBarItem];
+        barButton.tag = 1000;
+        [barButton bk_addEventHandler:^(id sender) {
+            if (_leftBarItem.action) _leftBarItem.action();
+        } forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:barButton];
         [barButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(-10);
@@ -80,6 +84,10 @@
     if ((_rightBarItem != rightBarItem) && rightBarItem) {
         _rightBarItem = rightBarItem;
         WBNavBarButton *barButton = [[WBNavBarButton alloc] initWithBarItem:_rightBarItem];
+        barButton.tag = 1001;
+        [barButton bk_addEventHandler:^(id sender) {
+            if (_rightBarItem.action) _rightBarItem.action();
+        } forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:barButton];
         [barButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(-10);
@@ -91,14 +99,25 @@
     if ((_titleBarItem != titleBarItem) && titleBarItem) {
         _titleBarItem = titleBarItem;
         WBNavBarButton *barButton = [[WBNavBarButton alloc] initWithBarItem:_titleBarItem];
+        barButton.tag = 1002;
+        [barButton bk_addEventHandler:^(id sender) {
+            if (_titleBarItem.action) _titleBarItem.action();
+        } forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:barButton];
         [barButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(-10);
             make.centerX.equalTo(self.mas_centerX).offset(0);
         }];
+        [barButton.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(122);
+        }];
     }
 }
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    
+-(void)setTitle:(NSString *)title{
+    if (_title != title) {
+        _title = title;
+        _titleBarItem.title = title;
+        [((WBNavBarButton *)[self viewWithTag:1002]) setTitle:_title forState:UIControlStateNormal];
+    }
 }
 @end

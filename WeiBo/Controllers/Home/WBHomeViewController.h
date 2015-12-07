@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface WBHomeViewController : BaseViewController
+@interface WBHomeViewController : BaseTableViewController
 
 @end

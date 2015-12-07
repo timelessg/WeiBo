@@ -27,7 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tabBar];
-    [self.view addSubview:self.navicationBar];
     
     [self showAuth];
     [self setupChildVC];
@@ -62,13 +61,17 @@
         WBTabBarItem *itemProfile = [WBTabBarItem initWithTitle:@"我" imageNormal:@"tabbar_profile" imageSelected:@"tabbar_profile_selected" type:TarBarItemTypeTitle];
         
         _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
-            UIViewController *vc = weakSelf.childViewControllers[itemIndex];
-            vc.view.frame = weakSelf.view.frame;
-            [weakSelf.view insertSubview:vc.view belowSubview:weakSelf.tabBar];
-            
-            [weakSelf.currentVC.view removeFromSuperview];
-            
-            weakSelf.currentVC = vc;
+            if (itemIndex == 2) {
+                
+            }else{
+                UIViewController *vc = weakSelf.childViewControllers[itemIndex];
+                vc.view.frame = weakSelf.view.frame;
+                [weakSelf.view insertSubview:vc.view belowSubview:weakSelf.tabBar];
+                
+                [weakSelf.currentVC.view removeFromSuperview];
+                
+                weakSelf.currentVC = vc;
+            }
         }];
     }
     return _tabBar;

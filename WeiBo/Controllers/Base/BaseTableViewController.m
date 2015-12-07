@@ -13,8 +13,11 @@
 @end
 
 @implementation BaseTableViewController
--(void)viewDidLoad{
-    [super viewDidLoad];
+-(instancetype)initWithShowHeader:(BOOL)showHeader showFooter:(BOOL)showFooter{
+    if (self = [super init]) {
+        [self.view addSubview:self.listTableView];
+    }
+    return self;
 }
 -(UITableView *)listTableView{
     if (!_listTableView) {
@@ -25,7 +28,15 @@
     }
     return _listTableView;
 }
+
+#pragma mark - TableView DataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 0;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 0;
 }
 @end

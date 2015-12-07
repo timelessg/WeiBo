@@ -17,10 +17,10 @@ typedef NS_ENUM(NSUInteger,WBNavBarItemType) {
 typedef void(^ActionBlock)(void);
 
 @interface WBNavBarItem : NSObject
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,strong)UIFont *font;
-@property(nonatomic,strong)UIColor *textColorNormal;
-@property(nonatomic,strong)UIColor *textColorHighlighted;
+@property(nonatomic,strong)NSString *title;
+@property(nonatomic,strong)UIFont   *font;
+@property(nonatomic,strong)UIColor  *textColorNormal;
+@property(nonatomic,strong)UIColor  *textColorHighlighted;
 
 @property(nonatomic,copy)NSString *normalImage;
 @property(nonatomic,copy)NSString *highlightedImage;
@@ -36,6 +36,7 @@ typedef void(^ActionBlock)(void);
 
 
 @interface WBNavicationBar : FXBlurView
+@property(nonatomic,copy)NSString *title;
 @property(nonatomic,strong)WBNavBarItem *titleBarItem;
 @property(nonatomic,strong)WBNavBarItem *leftBarItem;
 @property(nonatomic,strong)WBNavBarItem *rightBarItem;

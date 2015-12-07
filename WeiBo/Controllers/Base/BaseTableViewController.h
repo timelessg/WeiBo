@@ -11,4 +11,8 @@
 
 @interface BaseTableViewController : BaseViewController
 @property(nonatomic,strong)UITableView *listTableView;
+@property(nonatomic,strong)NSMutableArray *dataSource;
+@property(nonatomic,assign,getter = isShowRefreshHeader)BOOL showRefreshHeader;
+@property(nonatomic,assign,getter = isShowRefreshFooter)BOOL showRefreshFooter;
+-(instancetype)initWithShowHeader:(BOOL)showHeader showFooter:(BOOL)showFooter;
 @end
