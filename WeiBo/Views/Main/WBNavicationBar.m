@@ -8,9 +8,14 @@
 
 #import "WBNavicationBar.h"
 
+#pragma - mark WBNavBarItem
+
 @implementation WBNavBarItem
 
 @end
+
+
+#pragma - mark WBNavBarButton
 
 
 @interface WBNavBarButton ()
@@ -26,6 +31,7 @@
             [self setTitleColor:barItem.textColorHighlighted forState:UIControlStateHighlighted];
             [self setTitle:barItem.title forState:UIControlStateNormal];
             self.titleLabel.textAlignment = NSTextAlignmentCenter;
+            self.titleLabel.font = barItem.font;
         }
         
         if (barItem.type == WBNavBarItemTypeButton) {
@@ -46,6 +52,7 @@
 @end
 
 
+#pragma - mark WBNavicationBar
 
 @implementation WBNavicationBar
 -(instancetype)initWithFrame:(CGRect)frame{

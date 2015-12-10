@@ -2745,6 +2745,7 @@
 		657365D11C11393A0066BC31 /* WBMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365CB1C11393A0066BC31 /* WBMessageViewController.m */; };
 		657365D21C11393A0066BC31 /* WBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365CE1C11393A0066BC31 /* WBProfileViewController.m */; };
 		65D5E7F81C11D6C200CD5442 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D5E7F71C11D6C200CD5442 /* BaseTableViewController.m */; };
+		65D5E8B01C15B9AE00CD5442 /* WBPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */; };
 		65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */; };
 		E7EA47CBA4011462486EC877 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2CF096D91AF8E7A6D39F63 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -5510,6 +5511,8 @@
 		657365CE1C11393A0066BC31 /* WBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBProfileViewController.m; sourceTree = "<group>"; };
 		65D5E7F61C11D6C200CD5442 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		65D5E7F71C11D6C200CD5442 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		65D5E8AE1C15B9AE00CD5442 /* WBPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBPopMenu.h; sourceTree = "<group>"; };
+		65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBPopMenu.m; sourceTree = "<group>"; };
 		65E7E9591C0F551B000BC94C /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		9E2CF096D91AF8E7A6D39F63 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -8439,6 +8442,8 @@
 				6510B5C11C0F377F000F1D39 /* WBTabBar.m */,
 				657365991C100F630066BC31 /* WBNavicationBar.h */,
 				6573659A1C100F630066BC31 /* WBNavicationBar.m */,
+				65D5E8AE1C15B9AE00CD5442 /* WBPopMenu.h */,
+				65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -11337,6 +11342,7 @@
 				6510A0721C0F29C5000F1D39 /* UIView+Extension.m in Sources */,
 				657365AA1C103FE10066BC31 /* NetAPIManager.m in Sources */,
 				6510A0531C0F2959000F1D39 /* AppDelegate.m in Sources */,
+				65D5E8B01C15B9AE00CD5442 /* WBPopMenu.m in Sources */,
 				6510A0501C0F2959000F1D39 /* main.m in Sources */,
 				6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */,
 				65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */,

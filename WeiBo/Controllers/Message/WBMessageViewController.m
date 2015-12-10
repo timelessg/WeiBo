@@ -18,12 +18,13 @@
     [self setupNavBar];
 }
 -(void)setupNavBar{
-    [self.view addSubview:self.navicationBar];
-    WBNavBarItem *rightItem = [WBNavBarItem new];
-    rightItem.type = WBNavBarItemTypeButton;
-    rightItem.normalImage = @"navigationbar_icon_radar";
-    rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
-    self.rightBarItem = rightItem;
+    [super setupNavBar];
+    WBNavBarItem *leftItem = [WBNavBarItem new];
+    leftItem.type = WBNavBarItemTypeLabel;
+    leftItem.title = @"发现群";
+    leftItem.textColorNormal = [UIColor colorWithHex:0x525252];
+    leftItem.font = [UIFont systemFontOfSize:16];
+    self.leftBarItem = leftItem;
     
     WBNavBarItem *titltItem = [WBNavBarItem new];
     titltItem.type = WBNavBarItemTypeLabel;
@@ -32,10 +33,10 @@
     titltItem.font = [UIFont boldSystemFontOfSize:17];
     self.titleBarItem = titltItem;
     
-    WBNavBarItem *leftItem = [WBNavBarItem new];
-    leftItem.type = WBNavBarItemTypeButton;
-    leftItem.normalImage = @"navigationbar_friendattention";
-    leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
-    self.leftBarItem = leftItem;
+    WBNavBarItem *rightItem = [WBNavBarItem new];
+    rightItem.type = WBNavBarItemTypeButton;
+    rightItem.normalImage = @"navigationbar_icon_newchat";
+    rightItem.highlightedImage = @"navigationbar_icon_newchat_highlight";
+    self.rightBarItem = rightItem;
 }
 @end

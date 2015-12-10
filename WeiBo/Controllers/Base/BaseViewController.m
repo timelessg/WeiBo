@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+-(void)setupNavBar{
+    [self.view addSubview:self.navicationBar];
+}
 -(WBNavicationBar *)navicationBar{
     if (!_navicationBar) {
         _navicationBar = [[WBNavicationBar alloc] initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, 44 + 20)];

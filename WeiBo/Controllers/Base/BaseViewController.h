@@ -14,4 +14,5 @@
 @property(nonatomic,strong)WBNavBarItem *leftBarItem;
 @property(nonatomic,strong)WBNavBarItem *rightBarItem;
 @property(nonatomic,strong)WBNavBarItem *titleBarItem;
+-(void)setupNavBar;
 @end
