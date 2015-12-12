@@ -62,16 +62,15 @@
         
         _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
             if (itemIndex == 2) {
-                
-            }else{
-                UIViewController *vc = weakSelf.childViewControllers[itemIndex];
-                vc.view.frame = weakSelf.view.frame;
-                [weakSelf.view insertSubview:vc.view belowSubview:weakSelf.tabBar];
-                
-                [weakSelf.currentVC.view removeFromSuperview];
-                
-                weakSelf.currentVC = vc;
+                return ;
             }
+            NSUInteger index = (itemIndex >= 2) ? itemIndex - 1 : itemIndex;
+            UIViewController *vc = weakSelf.childViewControllers[index];
+            if (vc == weakSelf.currentVC) return;
+            vc.view.frame = weakSelf.view.frame;
+            [weakSelf.view insertSubview:vc.view belowSubview:weakSelf.tabBar];
+            [weakSelf.currentVC.view removeFromSuperview];
+            weakSelf.currentVC = vc;
         }];
     }
     return _tabBar;

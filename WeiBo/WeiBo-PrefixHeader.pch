@@ -14,7 +14,7 @@
 #import <TMCache.h>
 #import <ReactiveCocoa.h>
 #import "UIColor+Hex.h"
-
+#import "UIView+Extension.h"
 #define kUserCache          @"userCache"
 
 #define BaseURL             @"https://api.weibo.com/2/"

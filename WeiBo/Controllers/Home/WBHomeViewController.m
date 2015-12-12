@@ -31,7 +31,7 @@
     
     WBNavBarItem *titltItem = [WBNavBarItem new];
     titltItem.type = WBNavBarItemTypeLabel;
-    titltItem.title = @"啊啊啊啊啊啊啊啊啊";
+    titltItem.title = @"郭郭郭Coding";
     titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
     titltItem.font = [UIFont boldSystemFontOfSize:17];
     self.titleBarItem = titltItem;
@@ -50,7 +50,15 @@
 }
 -(WBPopMenu *)titlePopMenu{
     if (!_titlePopMenu) {
-        _titlePopMenu = [[WBPopMenu alloc] initWithItems:@[@"啊啊啊",@"啊啊啊",@"啊啊啊"] type:WBPopMenuTypeCenter selectIndex:^(NSUInteger index) {
+        NSMutableArray *items = [@[@{@"section":@"",@"items":[@[] mutableCopy]},@{@"section":@"其他",@"items":[@[] mutableCopy]}] mutableCopy];
+
+        NSArray *item_1 = @[@"情感",@"摄影",@"网络红人",@"同事",@"同学",@"名人明星"];
+        for (NSDictionary *dic in items) {
+            for (NSString *item in item_1) {
+                [dic[@"items"] addObject:[WBPopItem item:item]];
+            }
+        }
+        _titlePopMenu = [[WBPopMenu alloc] initWithItems:items type:WBPopMenuTypeCenter selectIndex:^(NSUInteger index) {
             
         }];
     }

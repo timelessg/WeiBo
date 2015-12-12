@@ -9,5 +9,11 @@
 #import "WBDiscoverViewController.h"
 
 @implementation WBDiscoverViewController
-
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    [self setupNavBar];
+}
+-(void)setupNavBar{
+    [super setupNavBar];
+}
 @end
