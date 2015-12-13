@@ -2743,8 +2743,9 @@
 		657365D01C11393A0066BC31 /* WBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365C81C11393A0066BC31 /* WBHomeViewController.m */; };
 		657365D11C11393A0066BC31 /* WBMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365CB1C11393A0066BC31 /* WBMessageViewController.m */; };
 		657365D21C11393A0066BC31 /* WBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365CE1C11393A0066BC31 /* WBProfileViewController.m */; };
+		658100C41C1DB41400B7A2B6 /* WBComposeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 658100C31C1DB41400B7A2B6 /* WBComposeMenu.m */; };
 		65D5E7F81C11D6C200CD5442 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D5E7F71C11D6C200CD5442 /* BaseTableViewController.m */; };
-		65D5E8B01C15B9AE00CD5442 /* WBPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */; };
+		65D5E8B01C15B9AE00CD5442 /* WBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D5E8AF1C15B9AE00CD5442 /* WBPopover.m */; };
 		65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */; };
 		65FA91581C1C6E310083441D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FA91571C1C6E310083441D /* UIView+Extension.m */; };
 		E7EA47CBA4011462486EC877 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2CF096D91AF8E7A6D39F63 /* libPods.a */; };
@@ -5507,10 +5508,12 @@
 		657365CB1C11393A0066BC31 /* WBMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBMessageViewController.m; sourceTree = "<group>"; };
 		657365CD1C11393A0066BC31 /* WBProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBProfileViewController.h; sourceTree = "<group>"; };
 		657365CE1C11393A0066BC31 /* WBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBProfileViewController.m; sourceTree = "<group>"; };
+		658100C21C1DB41400B7A2B6 /* WBComposeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposeMenu.h; sourceTree = "<group>"; };
+		658100C31C1DB41400B7A2B6 /* WBComposeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeMenu.m; sourceTree = "<group>"; };
 		65D5E7F61C11D6C200CD5442 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		65D5E7F71C11D6C200CD5442 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		65D5E8AE1C15B9AE00CD5442 /* WBPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBPopMenu.h; sourceTree = "<group>"; };
-		65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBPopMenu.m; sourceTree = "<group>"; };
+		65D5E8AE1C15B9AE00CD5442 /* WBPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBPopover.h; sourceTree = "<group>"; };
+		65D5E8AF1C15B9AE00CD5442 /* WBPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBPopover.m; sourceTree = "<group>"; };
 		65E7E9591C0F551B000BC94C /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		65E7E95A1C0F551B000BC94C /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		65FA91561C1C6E310083441D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -8408,6 +8411,7 @@
 		6510A0711C0F29C5000F1D39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				658100C11C1D972600B7A2B6 /* Home */,
 				6510B5BF1C0F3759000F1D39 /* Main */,
 			);
 			path = Views;
@@ -8442,8 +8446,10 @@
 				6510B5C11C0F377F000F1D39 /* WBTabBar.m */,
 				657365991C100F630066BC31 /* WBNavicationBar.h */,
 				6573659A1C100F630066BC31 /* WBNavicationBar.m */,
-				65D5E8AE1C15B9AE00CD5442 /* WBPopMenu.h */,
-				65D5E8AF1C15B9AE00CD5442 /* WBPopMenu.m */,
+				65D5E8AE1C15B9AE00CD5442 /* WBPopover.h */,
+				65D5E8AF1C15B9AE00CD5442 /* WBPopover.m */,
+				658100C21C1DB41400B7A2B6 /* WBComposeMenu.h */,
+				658100C31C1DB41400B7A2B6 /* WBComposeMenu.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -8491,6 +8497,13 @@
 				657365CE1C11393A0066BC31 /* WBProfileViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		658100C11C1D972600B7A2B6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -11342,7 +11355,7 @@
 				6510A07E1C0F2C4F000F1D39 /* BaseViewController.m in Sources */,
 				657365AA1C103FE10066BC31 /* NetAPIManager.m in Sources */,
 				6510A0531C0F2959000F1D39 /* AppDelegate.m in Sources */,
-				65D5E8B01C15B9AE00CD5442 /* WBPopMenu.m in Sources */,
+				65D5E8B01C15B9AE00CD5442 /* WBPopover.m in Sources */,
 				6510A0501C0F2959000F1D39 /* main.m in Sources */,
 				6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */,
 				65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */,
@@ -11351,6 +11364,7 @@
 				6573659F1C1020080066BC31 /* WBWebAuthViewController.m in Sources */,
 				657365AD1C10491D0066BC31 /* WBStatuse.m in Sources */,
 				6510A0771C0F2BD0000F1D39 /* MainViewController.m in Sources */,
+				658100C41C1DB41400B7A2B6 /* WBComposeMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

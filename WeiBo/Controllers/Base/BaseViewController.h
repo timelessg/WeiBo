@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WBNavicationBar.h"
+#import "WBPopover.h"
 
 @interface BaseViewController : UIViewController
 @property(nonatomic,strong)WBNavicationBar *navicationBar;

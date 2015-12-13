@@ -7,10 +7,10 @@
 //
 
 #import "WBHomeViewController.h"
-#import "WBPopMenu.h"
 
 @interface WBHomeViewController ()
-@property(nonatomic,strong)WBPopMenu *titlePopMenu;
+@property(nonatomic,strong)WBPopover *titlePopMenu;
+@property(nonatomic,strong)WBPopover *radarPopMenu;
 @end
 
 @implementation WBHomeViewController
@@ -20,12 +20,13 @@
 }
 -(void)setupNavBar{
     [super setupNavBar];
+    WS(weakSelf);
     WBNavBarItem *rightItem = [WBNavBarItem new];
     rightItem.type = WBNavBarItemTypeButton;
     rightItem.normalImage = @"navigationbar_icon_radar";
     rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
     rightItem.action = ^(){
-        
+        [weakSelf.radarPopMenu show];
     };
     self.rightBarItem = rightItem;
     
@@ -36,9 +37,9 @@
     titltItem.font = [UIFont boldSystemFontOfSize:17];
     self.titleBarItem = titltItem;
     titltItem.action = ^(){
-        [self.titlePopMenu show];
+        [weakSelf.titlePopMenu show];
     };
-
+    
     WBNavBarItem *leftItem = [WBNavBarItem new];
     leftItem.type = WBNavBarItemTypeButton;
     leftItem.normalImage = @"navigationbar_friendattention";
@@ -48,20 +49,32 @@
         
     };
 }
--(WBPopMenu *)titlePopMenu{
+-(WBPopover *)titlePopMenu{
     if (!_titlePopMenu) {
-        NSMutableArray *items = [@[@{@"section":@"",@"items":[@[] mutableCopy]},@{@"section":@"其他",@"items":[@[] mutableCopy]}] mutableCopy];
-
-        NSArray *item_1 = @[@"情感",@"摄影",@"网络红人",@"同事",@"同学",@"名人明星"];
-        for (NSDictionary *dic in items) {
-            for (NSString *item in item_1) {
-                [dic[@"items"] addObject:[WBPopItem item:item]];
-            }
-        }
-        _titlePopMenu = [[WBPopMenu alloc] initWithItems:items type:WBPopMenuTypeCenter selectIndex:^(NSUInteger index) {
+        WBPopItem *home = [WBPopItem item:@"首页" selected:NO like:NO];
+        WBPopItem *friend = [WBPopItem item:@"好友圈" selected:YES like:YES];
+        WBPopItem *group = [WBPopItem item:@"群微博" selected:NO like:NO];
+        WBPopItem *my = [WBPopItem item:@"我的微博" selected:NO like:NO];
+        WBPopItem *like = [WBPopItem item:@"特别关注" selected:NO like:NO];
+        WBPopItem *private = [WBPopItem item:@"悄悄关注" selected:NO like:NO];
+        WBPopItem *other = [WBPopItem item:@"周边微博" selected:NO like:NO];
+        
+        NSArray *items = @[@{@"section":@"",@"items":@[home,friend,group,my]},@{@"section":@"我的分组",@"items":@[like,private]},@{@"section":@"其他",@"items":@[other]}];
+        _titlePopMenu = [[WBPopover alloc] initWithItems:items height:350 type:WBPopMenuTypeCenter selectIndex:^(NSString *item) {
             
         }];
     }
     return _titlePopMenu;
+}
+-(WBPopover *)radarPopMenu{
+    if (!_radarPopMenu) {
+        WBPopItem *radra = [WBPopItem item:@"雷达" image:@"popover_icon_radar"];
+        WBPopItem *qrcode = [WBPopItem item:@"扫一扫" image:@"popover_icon_qrcode"];
+        
+        _radarPopMenu = [[WBPopover alloc] initWithItems:@[@{@"section":@"",@"items":@[radra,qrcode]}] height:98 type:WBPopMenuTypeRight selectIndex:^(NSString *item) {
+            
+        }];
+    }
+    return _radarPopMenu;
 }
 @end
