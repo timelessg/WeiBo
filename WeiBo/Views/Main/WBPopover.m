@@ -147,7 +147,7 @@
         _itemBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         [_itemBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _itemBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-
+        
         if (_type == WBPopMenuTypeCenter) {
             UIImage *selectedImage = [[UIImage imageNamed:@"popover_background_selected"] stretchableImageWithLeftCapWidth:1 topCapHeight:1];
             [_itemBtn setBackgroundImage:selectedImage forState:UIControlStateSelected];
@@ -228,9 +228,9 @@
 -(void)setupView{
     [[self window] addSubview:self.bgView];
     [self.bgView addSubview:self.menuView];
-    [self.bgView addSubview:self.footerView];
     
     if (_type == WBPopMenuTypeCenter) {
+        [self.bgView addSubview:self.footerView];
         [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(26);
             make.top.equalTo(self.menuTableView.mas_bottom).offset(2);

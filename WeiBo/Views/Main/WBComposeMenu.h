@@ -10,7 +10,7 @@
 #import <FXBlurView.h>
 
 @interface WBComposeMenuItem : UIControl
-
+-(instancetype)initWithTitle:(NSString *)title icoImage:(NSString *)icoImage;
 @end
 
 @interface WBComposeMenuBgView : FXBlurView
@@ -18,5 +18,5 @@
 @end
 
 @interface WBComposeMenu : NSObject
-
+-(void)show;
 @end

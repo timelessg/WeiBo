@@ -16,9 +16,11 @@
 #import "WBDiscoverViewController.h"
 #import "WBProfileViewController.h"
 #import "WBNavicationBar.h"
+#import "WBComposeMenu.h"
 
 @interface MainViewController ()
 @property(nonatomic,strong)WBTabBar *tabBar;
+@property(nonatomic,strong)WBComposeMenu *composeMenu;
 @property(nonatomic,strong)UIViewController *currentVC;
 @end
 
@@ -50,6 +52,12 @@
     }];
     [self.view insertSubview:self.childViewControllers[0].view belowSubview:self.tabBar];
 }
+-(WBComposeMenu *)composeMenu{
+    if (!_composeMenu) {
+        _composeMenu = [[WBComposeMenu alloc] init];
+    }
+    return _composeMenu;
+}
 -(WBTabBar *)tabBar{
     if (!_tabBar) {
         WS(weakSelf);
@@ -62,6 +70,7 @@
         
         _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
             if (itemIndex == 2) {
+                [weakSelf.composeMenu show];
                 return ;
             }
             NSUInteger index = (itemIndex >= 2) ? itemIndex - 1 : itemIndex;
@@ -79,15 +88,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

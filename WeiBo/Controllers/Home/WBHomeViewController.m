@@ -34,7 +34,7 @@
     titltItem.type = WBNavBarItemTypeLabel;
     titltItem.title = @"郭郭郭Coding";
     titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    titltItem.font = [UIFont boldSystemFontOfSize:17];
+    titltItem.font = [UIFont boldSystemFontOfSize:16];
     self.titleBarItem = titltItem;
     titltItem.action = ^(){
         [weakSelf.titlePopMenu show];
