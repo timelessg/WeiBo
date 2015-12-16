@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger,WBNavBarItemType) {
     WBNavBarItemTypeButton,
     WBNavBarItemTypeBack,
 };
+
 typedef void(^ActionBlock)(void);
 
 @interface WBNavBarItem : NSObject

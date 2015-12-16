@@ -27,4 +27,6 @@
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 #define kSCREENWIDTH   [UIScreen mainScreen].bounds.size.width
 #define KSCREENHEIGHT  [UIScreen mainScreen].bounds.size.height
+#define kNavBarHeight kStatusHeight + 44
+#define kStatusHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #endif /* WeiBo_PrefixHeader_pch */

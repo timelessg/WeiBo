@@ -20,7 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 48, kSCREENWIDTH, KSCREENHEIGHT - 48)];
+    [self setupNavBar];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kSCREENWIDTH, KSCREENHEIGHT - kNavBarHeight)];
     NSString *url = @"https://api.weibo.com/oauth2/authorize?client_id=2159567536&redirect_uri=http://sns.whalecloud.com/sina2/callback&response_type=code&display=mobile";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
@@ -28,6 +29,25 @@
     [webView loadRequest:request];
     [self.view addSubview:webView];
     
+}
+-(void)setupNavBar{
+    [super setupNavBar];
+    WS(weakSelf);
+    WBNavBarItem *titltItem = [WBNavBarItem new];
+    titltItem.type = WBNavBarItemTypeLabel;
+    titltItem.title = @"应用授权";
+    titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
+    titltItem.font = [UIFont boldSystemFontOfSize:16];
+    self.titleBarItem = titltItem;
+    
+    WBNavBarItem *leftItem = [WBNavBarItem new];
+    leftItem.type = WBNavBarItemTypeButton;
+    leftItem.normalImage = @"camera_close";
+    leftItem.highlightedImage = @"camera_close_highlighted";
+    self.leftBarItem = leftItem;
+    leftItem.action = ^(){
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
 }
 -(void)webViewDidFinishLoad:(UIWebView *)_webView
 {

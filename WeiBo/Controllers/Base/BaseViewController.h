@@ -10,10 +10,12 @@
 #import "WBNavicationBar.h"
 #import "WBPopover.h"
 
+
 @interface BaseViewController : UIViewController
 @property(nonatomic,strong)WBNavicationBar *navicationBar;
 @property(nonatomic,strong)WBNavBarItem *leftBarItem;
 @property(nonatomic,strong)WBNavBarItem *rightBarItem;
 @property(nonatomic,strong)WBNavBarItem *titleBarItem;
 -(void)setupNavBar;
+-(UIWindow *)window;
 @end

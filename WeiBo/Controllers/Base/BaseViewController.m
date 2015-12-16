@@ -27,7 +27,7 @@
 }
 -(WBNavicationBar *)navicationBar{
     if (!_navicationBar) {
-        _navicationBar = [[WBNavicationBar alloc] initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, 44 + 20)];
+        _navicationBar = [[WBNavicationBar alloc] initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, kNavBarHeight)];
     }
     return _navicationBar;
 }
@@ -48,6 +48,9 @@
         _titleBarItem = titleBarItem;
         _navicationBar.titleBarItem = _titleBarItem;
     }
+}
+-(UIWindow *)window{
+    return [[UIApplication sharedApplication] keyWindow];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

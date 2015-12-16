@@ -21,7 +21,7 @@
 }
 -(UITableView *)listTableView{
     if (!_listTableView) {
-        _listTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44 + 20, kSCREENWIDTH, KSCREENHEIGHT) style:UITableViewStylePlain];
+        _listTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kSCREENWIDTH, KSCREENHEIGHT) style:UITableViewStylePlain];
         _listTableView.dataSource = self;
         _listTableView.delegate = self;
         [self.view addSubview:_listTableView];
