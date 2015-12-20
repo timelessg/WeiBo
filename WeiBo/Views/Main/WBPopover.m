@@ -162,13 +162,15 @@
                 self.didSelectItem(self.item.item);
                 [self.superview.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([obj isKindOfClass:[WBPopoverCell class]]) {
-                        ((WBPopoverCell *)obj).itemBtn.selected = NO;
-                        ((WBPopoverCell *)obj).likeIco.selected = YES;
+                        WBPopoverCell *cell = obj;
+                        cell.itemBtn.selected = NO;
+                        cell.item.selected = NO;
+                        cell.likeIco.selected = YES;
                     }
                 }];
-                self.likeIco.selected = !self.item.like;
-                self.item.selected = !self.item.selected;
+                self.item.selected = YES;
                 sender.selected = !sender.selected;
+                self.likeIco.selected = !self.item.like;
             } forControlEvents:UIControlEventTouchUpInside];
         }
         

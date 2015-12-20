@@ -10,19 +10,15 @@
 #import <FXBlurView.h>
 
 @interface WBComposeMenuItem : UIControl
-@property (nonatomic, assign) CGFloat animationDuration;
+@property(nonatomic,assign)CGRect orignalFrame;
+@property(nonatomic,assign)CGFloat animationDuration;
 -(instancetype)initWithTitle:(NSString *)title icoImage:(NSString *)icoImage;
 @end
 
-@interface WBComposeMenuBgView : FXBlurView
+@interface WBComposeMenuView : FXBlurView
 @property(nonatomic,strong)NSArray *items;
 @end
 
 @interface WBComposeMenu : NSObject
 -(void)show;
-@end
-
-@interface UIView (Additions)
-- (CABasicAnimation *)fadeIn;
-- (CABasicAnimation *)fadeOut;
 @end
