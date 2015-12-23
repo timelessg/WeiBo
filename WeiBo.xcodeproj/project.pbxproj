@@ -2733,6 +2733,9 @@
 		6510B5BD1C0F3102000F1D39 /* worldcup_icon_witzerland_17@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6510AB1D1C0F3101000F1D39 /* worldcup_icon_witzerland_17@2x.png */; };
 		6510B5BE1C0F3102000F1D39 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6510AB1E1C0F3101000F1D39 /* yw_1222.jpg */; };
 		6510B5C21C0F377F000F1D39 /* WBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510B5C11C0F377F000F1D39 /* WBTabBar.m */; };
+		65624EC51C2AF332006DD872 /* WBTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624EC41C2AF332006DD872 /* WBTweetCell.m */; };
+		65624EC81C2AF372006DD872 /* WBTweetToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624EC71C2AF372006DD872 /* WBTweetToolBar.m */; };
+		65624ECB1C2AF386006DD872 /* WBTweetPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624ECA1C2AF386006DD872 /* WBTweetPhotos.m */; };
 		6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6573659A1C100F630066BC31 /* WBNavicationBar.m */; };
 		6573659F1C1020080066BC31 /* WBWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6573659E1C1020080066BC31 /* WBWebAuthViewController.m */; };
 		657365A21C1020B40066BC31 /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A11C1020B40066BC31 /* WBUser.m */; };
@@ -5488,6 +5491,12 @@
 		6510AB1E1C0F3101000F1D39 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		6510B5C01C0F377F000F1D39 /* WBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTabBar.h; sourceTree = "<group>"; };
 		6510B5C11C0F377F000F1D39 /* WBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBar.m; sourceTree = "<group>"; };
+		65624EC31C2AF332006DD872 /* WBTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTweetCell.h; sourceTree = "<group>"; };
+		65624EC41C2AF332006DD872 /* WBTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTweetCell.m; sourceTree = "<group>"; };
+		65624EC61C2AF372006DD872 /* WBTweetToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTweetToolBar.h; sourceTree = "<group>"; };
+		65624EC71C2AF372006DD872 /* WBTweetToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTweetToolBar.m; sourceTree = "<group>"; };
+		65624EC91C2AF386006DD872 /* WBTweetPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTweetPhotos.h; sourceTree = "<group>"; };
+		65624ECA1C2AF386006DD872 /* WBTweetPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTweetPhotos.m; sourceTree = "<group>"; };
 		657365991C100F630066BC31 /* WBNavicationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNavicationBar.h; sourceTree = "<group>"; };
 		6573659A1C100F630066BC31 /* WBNavicationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNavicationBar.m; sourceTree = "<group>"; };
 		6573659D1C1020080066BC31 /* WBWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWebAuthViewController.h; sourceTree = "<group>"; };
@@ -8502,6 +8511,12 @@
 		658100C11C1D972600B7A2B6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				65624EC31C2AF332006DD872 /* WBTweetCell.h */,
+				65624EC41C2AF332006DD872 /* WBTweetCell.m */,
+				65624EC61C2AF372006DD872 /* WBTweetToolBar.h */,
+				65624EC71C2AF372006DD872 /* WBTweetToolBar.m */,
+				65624EC91C2AF386006DD872 /* WBTweetPhotos.h */,
+				65624ECA1C2AF386006DD872 /* WBTweetPhotos.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -11352,10 +11367,13 @@
 				65D5E7F81C11D6C200CD5442 /* BaseTableViewController.m in Sources */,
 				657365D01C11393A0066BC31 /* WBHomeViewController.m in Sources */,
 				6510A07B1C0F2C41000F1D39 /* BaseNavicationController.m in Sources */,
+				65624EC81C2AF372006DD872 /* WBTweetToolBar.m in Sources */,
+				65624ECB1C2AF386006DD872 /* WBTweetPhotos.m in Sources */,
 				6510A07E1C0F2C4F000F1D39 /* BaseViewController.m in Sources */,
 				657365AA1C103FE10066BC31 /* NetAPIManager.m in Sources */,
 				6510A0531C0F2959000F1D39 /* AppDelegate.m in Sources */,
 				65D5E8B01C15B9AE00CD5442 /* WBPopover.m in Sources */,
+				65624EC51C2AF332006DD872 /* WBTweetCell.m in Sources */,
 				6510A0501C0F2959000F1D39 /* main.m in Sources */,
 				6573659B1C100F630066BC31 /* WBNavicationBar.m in Sources */,
 				65E7E95B1C0F551B000BC94C /* UIColor+Hex.m in Sources */,

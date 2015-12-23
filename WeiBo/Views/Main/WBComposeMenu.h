@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <FXBlurView.h>
 
+typedef void(^DidSelectedItem)(NSUInteger );
+
 @interface WBComposeMenuItem : UIControl
 @property(nonatomic,assign)CGRect orignalFrame;
 @property(nonatomic,assign)CGFloat animationDuration;
@@ -16,9 +18,10 @@
 @end
 
 @interface WBComposeMenuView : FXBlurView
+@property(nonatomic,copy)DidSelectedItem block;
 @property(nonatomic,strong)NSArray *items;
 @end
 
 @interface WBComposeMenu : NSObject
--(void)show;
+-(void)showWithSelected:(DidSelectedItem)block;
 @end

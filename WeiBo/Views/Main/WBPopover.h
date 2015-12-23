@@ -14,6 +14,8 @@ typedef NS_ENUM(NSUInteger,WBPopMenuType) {
     WBPopMenuTypeRight,
 };
 
+typedef void(^IndexSelect)(NSString *);
+
 @interface WBPopItem : NSObject
 @property(nonatomic,copy)NSString *item;
 @property(nonatomic,copy)NSString *icoImage;
@@ -23,9 +25,11 @@ typedef NS_ENUM(NSUInteger,WBPopMenuType) {
 +(instancetype)item:(NSString *)item image:(NSString *)image;
 @end
 
+
 @interface WBPopMenuBg : UIView
 @property(nonatomic,copy)void (^touchBegan)(void);
 @end
+
 
 @interface WBPopoverSectionView : UIView
 @property(nonatomic,copy)NSString *sectionStr;
@@ -34,12 +38,11 @@ typedef NS_ENUM(NSUInteger,WBPopMenuType) {
 
 @interface WBPopoverCell : UITableViewCell
 @property(nonatomic,copy)WBPopItem *item;
-@property(nonatomic,copy)void (^didSelectItem)(NSString *);
+@property(nonatomic,copy)IndexSelect didSelectItem;
 -(instancetype)initWithType:(WBPopMenuType)type;
 @end
 
 
-typedef void(^IndexSelect)(NSString *);
 
 @interface WBPopover : NSObject
 @property(nonatomic,copy)void (^didClickEdit)(void);

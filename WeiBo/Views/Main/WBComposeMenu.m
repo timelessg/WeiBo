@@ -9,7 +9,7 @@
 #import "WBComposeMenu.h"
 #import "WBPopover.h"
 
-#pragma - mark WBComposeMenuBgView
+#pragma - mark WBComposeMenuItem
 
 
 @interface WBComposeMenuItem ()
@@ -62,6 +62,8 @@
 }
 @end
 
+#pragma - mark WBComposeMenuView
+
 @interface WBComposeMenuView () <UIScrollViewDelegate>
 @property(nonatomic,strong)UIView *toolsBar;
 @property(nonatomic,strong)UIButton *closeBtn;
@@ -99,7 +101,6 @@
     
     [self addSubview:self.toolsBar];
     
-    self.closeBtn.center = CGPointMake(self.toolsBar.centerX, self.toolsBar.height / 2);
     [self.toolsBar addSubview:self.closeBtn];
     [self.closeBtn bk_addEventHandler:^(UIButton *sender) {
         [weakSelf disAppear];
@@ -107,7 +108,6 @@
     
     [self.toolsBar addSubview:self.backBtn];
     self.backBtn.hidden = YES;
-    self.backBtn.center = CGPointMake(self.toolsBar.width / 4 , self.toolsBar.height / 2);
     [self.backBtn bk_addEventHandler:^(id sender) {
         [weakSelf switchPageOn:NO animation:YES];
     } forControlEvents:UIControlEventTouchUpInside];
@@ -129,13 +129,32 @@
             item.orignalFrame = item.frame;
             [self.itemArray addObject:item];
             [self.contentSrollView addSubview:item];
-            [item bk_addEventHandler:^(UIButton *sender) {
+            [item bk_addEventHandler:^(WBComposeMenuItem *sender) {
+                [self didSeletedItem:sender duration:0.15 scale:1.0];
                 if (sender.tag == 5) {
                     [weakSelf switchPageOn:YES animation:YES];
+                }else{
+                    [self disAppear];
+                    if (self.block) {
+                        self.block(sender.tag);
+                    }
                 }
             } forControlEvents:UIControlEventTouchUpInside];
+            
+            [item bk_addEventHandler:^(id sender) {
+                [self didSeletedItem:sender duration:0.15 scale:1.0];
+            } forControlEvents:UIControlEventTouchDragInside];
+            
+            [item bk_addEventHandler:^(id sender) {
+                [self didSeletedItem:sender duration:0.15 scale:1.2];
+            } forControlEvents:UIControlEventTouchDown];
         }
     }
+}
+-(void)didSeletedItem:(WBComposeMenuItem *)item duration:(CGFloat)duration scale:(CGFloat)scale{
+    [UIView animateWithDuration:duration animations:^{
+        item.transform = CGAffineTransformMakeScale(scale,scale);
+    }];
 }
 -(void)switchPageOn:(BOOL)on animation:(BOOL)animation{
     if (on) {
@@ -147,7 +166,7 @@
             self.closeBtn.alpha = 0;
             _separateLayer.hidden = NO;
         } completion:^(BOOL finished) {
-            self.closeBtn.center = CGPointMake(self.toolsBar.width / 4 * 3, self.toolsBar.height / 2);
+            self.closeBtn.frame = CGRectMake(kSCREENWIDTH / 2 + 0.5, 0, kSCREENWIDTH / 2 - 0.5, self.toolsBar.height);
             self.backBtn.hidden = NO;
             self.backBtn.alpha = 0;
             [UIView animateWithDuration:0.25 animations:^{
@@ -168,7 +187,7 @@
             _separateLayer.hidden = YES;
         } completion:^(BOOL finished) {
             self.backBtn.hidden = YES;
-            self.closeBtn.center = CGPointMake(self.toolsBar.width / 2, self.toolsBar.height / 2);
+            self.closeBtn.frame = CGRectMake(0, 0, kSCREENWIDTH, self.toolsBar.height);
             [UIView animateWithDuration:duration animations:^{
                 self.closeBtn.alpha = 1;
             }];
@@ -182,9 +201,11 @@
     self.closeBtn.alpha = 0;
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1.0f;
-        self.closeBtn.transform = CGAffineTransformMakeRotation(M_PI * 0.75);
+        self.closeBtn.imageView.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
         self.closeBtn.alpha = 1.0f;
-    } completion:nil];
+    } completion:^(BOOL finished) {
+        
+    }];
     
     for (WBComposeMenuItem *item in self.itemArray) {
         item.frame = item.orignalFrame;
@@ -224,9 +245,11 @@
         i ++ ;
     }
     [UIView animateWithDuration:0.5 + i * 0.03 animations:^{
-        self.closeBtn.transform = CGAffineTransformMakeRotation(0);
+        self.closeBtn.imageView.transform = CGAffineTransformMakeRotation(0);
         self.alpha = 0;
         self.closeBtn.alpha = 0;
+    } completion:^(BOOL finished) {
+        
     }];
 }
 -(NSMutableArray *)itemArray{
@@ -250,10 +273,12 @@
 }
 -(UIButton *)closeBtn{
     if (!_closeBtn) {
-        UIImage *icoImage = [UIImage imageNamed:@"tabbar_compose_background_icon_add"];
+        UIImage *icoImage = [UIImage imageNamed:@"tabbar_compose_background_icon_close"];
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.size = CGSizeMake(icoImage.size.width, icoImage.size.height);
-        [_closeBtn setBackgroundImage:icoImage forState:UIControlStateNormal];
+        _closeBtn.frame = CGRectMake(0, 0, kSCREENWIDTH, self.toolsBar.height);
+        [_closeBtn setImage:icoImage forState:UIControlStateNormal];
+        UIImage *highlightedImage = [[UIImage imageNamed:@"tabbar_compose_right_button_highlighted"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+        [_closeBtn setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
     }
     return _closeBtn;
 }
@@ -261,8 +286,11 @@
     if (!_backBtn) {
         UIImage *icoImage = [UIImage imageNamed:@"tabbar_compose_background_icon_return"];
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _backBtn.size = CGSizeMake(icoImage.size.width, icoImage.size.height);
-        [_backBtn setBackgroundImage:icoImage forState:UIControlStateNormal];
+        _backBtn.frame = CGRectMake(0, 0, kSCREENWIDTH / 2 - 0.5, self.toolsBar.height);
+        [_backBtn setImage:icoImage forState:UIControlStateNormal];
+        UIImage *highlightedImage = [[UIImage imageNamed:@"tabbar_compose_right_button_highlighted"] stretchableImageWithLeftCapWidth:0 topCapHeight:0];
+        [_backBtn setBackgroundImage:highlightedImage forState:UIControlStateHighlighted];
+        
     }
     return _backBtn;
 }
@@ -296,8 +324,9 @@
 @end
 
 @implementation WBComposeMenu
--(void)show{
+-(void)showWithSelected:(DidSelectedItem)block{
     [[self window] addSubview:self.composeView];
+    self.composeView.block = block;
     [self.composeView appear];
 }
 -(void)hide{

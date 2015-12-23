@@ -70,7 +70,9 @@
         
         _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
             if (itemIndex == 2) {
-                [weakSelf.composeMenu show];
+                [weakSelf.composeMenu showWithSelected:^(NSUInteger index) {
+                    
+                }];
                 return ;
             }
             NSUInteger index = (itemIndex >= 2) ? itemIndex - 1 : itemIndex;
