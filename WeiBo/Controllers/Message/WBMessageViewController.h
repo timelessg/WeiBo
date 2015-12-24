@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface WBMessageViewController : BaseViewController
-
+-(void)reloadView;
 @end

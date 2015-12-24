@@ -17,37 +17,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
--(void)setupNavBar{
-    [self.view addSubview:self.navicationBar];
+-(void)reloadView{
+    self.navicationController.navBar.leftBarItem = nil;
+    self.navicationController.navBar.titleBarItem = nil;
+    self.navicationController.navBar.rightBarItem = nil;
 }
--(WBNavicationBar *)navicationBar{
-    if (!_navicationBar) {
-        _navicationBar = [[WBNavicationBar alloc] initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, kNavBarHeight)];
-    }
-    return _navicationBar;
-}
--(void)setLeftBarItem:(WBNavBarItem *)leftBarItem{
-    if (_leftBarItem != leftBarItem) {
-        _leftBarItem = leftBarItem;
-        _navicationBar.leftBarItem = _leftBarItem;
-    }
-}
--(void)setRightBarItem:(WBNavBarItem *)rightBarItem{
-    if (_rightBarItem != rightBarItem) {
-        _rightBarItem = rightBarItem;
-        _navicationBar.rightBarItem = _rightBarItem;
-    }
-}
--(void)setTitleBarItem:(WBNavBarItem *)titleBarItem{
-    if (_titleBarItem != titleBarItem) {
-        _titleBarItem = titleBarItem;
-        _navicationBar.titleBarItem = _titleBarItem;
-    }
+-(BaseNavicationController *)navicationController{
+    return (BaseNavicationController *)self.navigationController;
 }
 -(UIWindow *)window{
     return [[UIApplication sharedApplication] keyWindow];

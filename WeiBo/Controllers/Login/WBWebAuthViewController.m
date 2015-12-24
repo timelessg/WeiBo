@@ -31,20 +31,19 @@
     
 }
 -(void)setupNavBar{
-    [super setupNavBar];
     WS(weakSelf);
     WBNavBarItem *titltItem = [WBNavBarItem new];
     titltItem.type = WBNavBarItemTypeLabel;
     titltItem.title = @"应用授权";
     titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
     titltItem.font = [UIFont boldSystemFontOfSize:16];
-    self.titleBarItem = titltItem;
+    self.navicationController.navBar.titleBarItem = titltItem;
     
     WBNavBarItem *leftItem = [WBNavBarItem new];
     leftItem.type = WBNavBarItemTypeButton;
     leftItem.normalImage = @"camera_close";
     leftItem.highlightedImage = @"camera_close_highlighted";
-    self.leftBarItem = leftItem;
+    self.navicationController.navBar.leftBarItem = leftItem;
     leftItem.action = ^(){
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     };

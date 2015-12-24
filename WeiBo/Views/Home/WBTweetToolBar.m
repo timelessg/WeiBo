@@ -9,13 +9,13 @@
 #import "WBTweetToolBar.h"
 
 @implementation WBTweetToolBar
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(instancetype)init{
+    if (self = [super init]) {
+        [self setupView];
+    }
+    return self;
 }
-*/
-
+-(void)setupView{
+    
+}
 @end

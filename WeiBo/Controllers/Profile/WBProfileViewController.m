@@ -8,26 +8,42 @@
 
 #import "WBProfileViewController.h"
 
+@interface WBProfileViewController ()
+@property(nonatomic,strong)WBNavBarItem *titltItem;
+@property(nonatomic,strong)WBNavBarItem *rightItem;
+@end
+
 @implementation WBProfileViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setupNavBar];
 }
+-(void)reloadView{
+    [super reloadView];
+    [self setupNavBar];
+}
+-(WBNavBarItem *)titltItem{
+    if (!_titltItem) {
+        _titltItem = [WBNavBarItem new];
+        _titltItem.type = WBNavBarItemTypeLabel;
+        _titltItem.title = @"我";
+        _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
+        _titltItem.font = [UIFont boldSystemFontOfSize:17];
+    }
+    return _titltItem;
+}
+-(WBNavBarItem *)rightItem{
+    if (!_rightItem) {
+        _rightItem = [WBNavBarItem new];
+        _rightItem.type = WBNavBarItemTypeLabel;
+        _rightItem.title = @"设置";
+        _rightItem.textColorNormal = [UIColor colorWithHex:0x525252];
+        _rightItem.font = [UIFont systemFontOfSize:16];
+    }
+    return _rightItem;
+}
 -(void)setupNavBar{
-    [super setupNavBar];
-    
-    WBNavBarItem *titltItem = [WBNavBarItem new];
-    titltItem.type = WBNavBarItemTypeLabel;
-    titltItem.title = @"我";
-    titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    titltItem.font = [UIFont boldSystemFontOfSize:17];
-    self.titleBarItem = titltItem;
-    
-    WBNavBarItem *rightItem = [WBNavBarItem new];
-    rightItem.type = WBNavBarItemTypeLabel;
-    rightItem.title = @"设置";
-    rightItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    rightItem.font = [UIFont systemFontOfSize:16];
-    self.rightBarItem = rightItem;
+    self.navicationController.navBar.titleBarItem = self.titltItem;
+    self.navicationController.navBar.rightBarItem = self.rightItem;
 }
 @end

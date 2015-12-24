@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WBNavicationBar.h"
 
 @interface BaseNavicationController : UINavigationController
-
+@property(nonatomic,strong)WBNavicationBar *navBar;
 @end

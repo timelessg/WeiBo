@@ -10,6 +10,9 @@
 
 @interface WBMessageViewController ()
 @property(nonatomic,strong)WBPopover *chatPopMenu;
+@property(nonatomic,strong)WBNavBarItem *leftItem;
+@property(nonatomic,strong)WBNavBarItem *titltItem;
+@property(nonatomic,strong)WBNavBarItem *rightItem;
 @end
 
 @implementation WBMessageViewController
@@ -17,31 +20,48 @@
     [super viewDidLoad];
     [self setupNavBar];
 }
+-(void)reloadView{
+    [super reloadView];
+    [self setupNavBar];
+}
+-(WBNavBarItem *)leftItem{
+    if (!_leftItem) {
+        _leftItem = [WBNavBarItem new];
+        _leftItem.type = WBNavBarItemTypeLabel;
+        _leftItem.title = @"发现群";
+        _leftItem.textColorNormal = [UIColor colorWithHex:0x525252];
+        _leftItem.font = [UIFont systemFontOfSize:16];
+    }
+    return _leftItem;
+}
+-(WBNavBarItem *)titltItem{
+    if (!_titltItem) {
+        _titltItem = [WBNavBarItem new];
+        _titltItem.type = WBNavBarItemTypeLabel;
+        _titltItem.title = @"发现";
+        _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
+        _titltItem.font = [UIFont boldSystemFontOfSize:17];
+    }
+    return _titltItem;
+}
+-(WBNavBarItem *)rightItem{
+    if (!_rightItem) {
+        WS(weakSelf);
+        _rightItem = [WBNavBarItem new];
+        _rightItem.type = WBNavBarItemTypeButton;
+        _rightItem.normalImage = @"navigationbar_icon_newchat";
+        _rightItem.highlightedImage = @"navigationbar_icon_newchat_highlight";
+        _rightItem.action = ^(){
+            [weakSelf.chatPopMenu show];
+        };
+    }
+    return _rightItem;
+}
 -(void)setupNavBar{
-    [super setupNavBar];
-    WS(weakSelf);
-    WBNavBarItem *leftItem = [WBNavBarItem new];
-    leftItem.type = WBNavBarItemTypeLabel;
-    leftItem.title = @"发现群";
-    leftItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    leftItem.font = [UIFont systemFontOfSize:16];
-    self.leftBarItem = leftItem;
-    
-    WBNavBarItem *titltItem = [WBNavBarItem new];
-    titltItem.type = WBNavBarItemTypeLabel;
-    titltItem.title = @"发现";
-    titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    titltItem.font = [UIFont boldSystemFontOfSize:17];
-    self.titleBarItem = titltItem;
-    
-    WBNavBarItem *rightItem = [WBNavBarItem new];
-    rightItem.type = WBNavBarItemTypeButton;
-    rightItem.normalImage = @"navigationbar_icon_newchat";
-    rightItem.highlightedImage = @"navigationbar_icon_newchat_highlight";
-    self.rightBarItem = rightItem;
-    self.rightBarItem.action = ^(){
-        [weakSelf.chatPopMenu show];
-    };
+    [super reloadView];
+    self.navicationController.navBar.leftBarItem = self.leftItem;
+    self.navicationController.navBar.titleBarItem = self.titltItem;
+    self.navicationController.navBar.rightBarItem = self.rightItem;
 }
 -(WBPopover *)chatPopMenu{
     if (!_chatPopMenu) {

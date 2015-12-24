@@ -10,5 +10,5 @@
 #import "BaseTableViewController.h"
 
 @interface WBHomeViewController : BaseTableViewController
-
+-(void)reloadView;
 @end

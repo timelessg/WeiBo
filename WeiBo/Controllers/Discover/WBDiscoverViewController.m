@@ -13,7 +13,10 @@
     [super viewDidLoad];
     [self setupNavBar];
 }
+-(void)reloadView{
+    [super reloadView];
+}
 -(void)setupNavBar{
-    [super setupNavBar];
+    
 }
 @end

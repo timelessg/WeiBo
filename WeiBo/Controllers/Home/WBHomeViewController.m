@@ -11,6 +11,10 @@
 @interface WBHomeViewController ()
 @property(nonatomic,strong)WBPopover *titlePopMenu;
 @property(nonatomic,strong)WBPopover *radarPopMenu;
+
+@property(nonatomic,strong)WBNavBarItem *leftItem;
+@property(nonatomic,strong)WBNavBarItem *titltItem;
+@property(nonatomic,strong)WBNavBarItem *rightItem;
 @end
 
 @implementation WBHomeViewController
@@ -18,36 +22,54 @@
     [super viewDidLoad];
     [self setupNavBar];
 }
+-(void)reloadView{
+    [super reloadView];
+    [self setupNavBar];
+}
+-(WBNavBarItem *)leftItem{
+    if (!_leftItem) {
+        _leftItem = [WBNavBarItem new];
+        _leftItem.type = WBNavBarItemTypeButton;
+        _leftItem.normalImage = @"navigationbar_friendattention";
+        _leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
+        _leftItem.action = ^(){
+            
+        };
+    }
+    return _leftItem;
+}
+-(WBNavBarItem *)titltItem{
+    if (!_titltItem) {
+        WS(weakSelf);
+        _titltItem = [WBNavBarItem new];
+        _titltItem.type = WBNavBarItemTypeLabel;
+        _titltItem.title = @"郭郭郭Coding";
+        _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
+        _titltItem.font = [UIFont boldSystemFontOfSize:16];
+        _titltItem.action = ^(){
+            [weakSelf.titlePopMenu show];
+        };
+    }
+    return _titltItem;
+}
+-(WBNavBarItem *)rightItem{
+    if (!_rightItem) {
+        WS(weakSelf);
+        _rightItem = [WBNavBarItem new];
+        _rightItem.type = WBNavBarItemTypeButton;
+        _rightItem.normalImage = @"navigationbar_icon_radar";
+        _rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
+        _rightItem.action = ^(){
+            [weakSelf.radarPopMenu show];
+        };
+    }
+    return _rightItem;
+}
 -(void)setupNavBar{
-    [super setupNavBar];
-    WS(weakSelf);
-    WBNavBarItem *rightItem = [WBNavBarItem new];
-    rightItem.type = WBNavBarItemTypeButton;
-    rightItem.normalImage = @"navigationbar_icon_radar";
-    rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
-    rightItem.action = ^(){
-        [weakSelf.radarPopMenu show];
-    };
-    self.rightBarItem = rightItem;
-    
-    WBNavBarItem *titltItem = [WBNavBarItem new];
-    titltItem.type = WBNavBarItemTypeLabel;
-    titltItem.title = @"郭郭郭Coding";
-    titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-    titltItem.font = [UIFont boldSystemFontOfSize:16];
-    self.titleBarItem = titltItem;
-    titltItem.action = ^(){
-        [weakSelf.titlePopMenu show];
-    };
-    
-    WBNavBarItem *leftItem = [WBNavBarItem new];
-    leftItem.type = WBNavBarItemTypeButton;
-    leftItem.normalImage = @"navigationbar_friendattention";
-    leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
-    self.leftBarItem = leftItem;
-    leftItem.action = ^(){
-        
-    };
+    [super reloadView];
+    self.navicationController.navBar.rightBarItem = self.rightItem;
+    self.navicationController.navBar.titleBarItem = self.titltItem;
+    self.navicationController.navBar.leftBarItem  = self.leftItem;
 }
 -(WBPopover *)titlePopMenu{
     if (!_titlePopMenu) {

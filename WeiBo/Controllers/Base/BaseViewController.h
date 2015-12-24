@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WBNavicationBar.h"
+#import "BaseNavicationController.h"
 #import "WBPopover.h"
 
 
 @interface BaseViewController : UIViewController
-@property(nonatomic,strong)WBNavicationBar *navicationBar;
-@property(nonatomic,strong)WBNavBarItem *leftBarItem;
-@property(nonatomic,strong)WBNavBarItem *rightBarItem;
-@property(nonatomic,strong)WBNavBarItem *titleBarItem;
--(void)setupNavBar;
+@property(nonatomic,strong)BaseNavicationController *navicationController;
 -(UIWindow *)window;
+-(void)reloadView;
 @end

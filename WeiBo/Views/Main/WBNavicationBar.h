@@ -32,6 +32,7 @@ typedef void(^ActionBlock)(void);
 
 
 @interface WBNavBarButton : UIButton
+@property(nonatomic,strong)WBNavBarItem *barItem;
 -(instancetype)initWithBarItem:(WBNavBarItem *)barItem;
 @end
 
