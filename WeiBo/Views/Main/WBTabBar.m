@@ -55,36 +55,34 @@
 
 
 @interface WBTabBar ()
-@property(nonatomic,strong)NSArray *items;
 @property(nonatomic,copy)SelectItemBlock selected;
 @end
 
 @implementation WBTabBar
+{
+    NSArray *_itemArray;
+}
 -(instancetype)initWithFrame:(CGRect)frame items:(NSArray <WBTabBarItem *> *)items selected:(SelectItemBlock)selected{
     if (self = [super initWithFrame:frame]) {
-        self.items = items;
+        _itemArray = items;
         self.selected = selected;
         [self setupView];
     }
     return self;
 }
 -(void)setupView{
-    CGFloat itemWidth = kSCREENWIDTH / self.items.count;
-    CGFloat itemHeight = self.bounds.size.height;
-    self.backgroundColor = [UIColor whiteColor];
+    CGFloat itemWidth = kSCREENWIDTH / _itemArray.count;
+    CGFloat itemHeight = self.bounds.size.height;    
+    self.barTintColor = nil;
     
-    self.blurRadius = 40;
-    self.tintColor  = [UIColor clearColor];
-    self.dynamic    = YES;
-
     self.layer.shadowColor   = [UIColor grayColor].CGColor;
     self.layer.shadowOffset  = CGSizeMake(0,1);
     self.layer.shadowOpacity = 0.6;
     self.layer.shadowRadius  = 2;
     self.clipsToBounds       = NO;
     
-    for (int i = 0; i < self.items.count ; i ++) {
-        WBTabBarItem *item = self.items[i];
+    for (int i = 0; i < _itemArray.count ; i ++) {
+        WBTabBarItem *item = _itemArray[i];
         
         UIView *barItemView = [UIView new];
         [self addSubview:barItemView];
@@ -96,7 +94,7 @@
         
         WBTabBarButton *barButton = [[WBTabBarButton alloc] initWithBarItem:item];
         barButton.tag = 100 + i;
-        [barItemView addSubview:barButton];
+        [self addSubview:barButton];
         [barButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(barItemView.mas_centerX).offset(0);
             make.centerY.equalTo(barItemView.mas_centerY).offset(0);
@@ -106,7 +104,7 @@
         [barButton bk_addEventHandler:^(WBTabBarButton *sender) {
             sender.selected = YES;
             if (!sender.barItem.disSelected) {
-                for (int i = 0; i < self.items.count; i ++) {
+                for (int i = 0; i < _itemArray.count; i ++) {
                     if (sender.tag != i + 100) {
                         UIButton *btn = [self viewWithTag:100 + i];
                         btn.selected = NO;

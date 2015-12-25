@@ -46,6 +46,7 @@ typedef void(^IndexSelect)(NSString *);
 
 @interface WBPopover : NSObject
 @property(nonatomic,copy)void (^didClickEdit)(void);
+@property(nonatomic,copy)void (^dismiess)(void);
 -(instancetype)initWithItems:(NSArray *)items height:(CGFloat)height type:(WBPopMenuType)type selectIndex:(IndexSelect)selectIndex;
 -(void)show;
 @end

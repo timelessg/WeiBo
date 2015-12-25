@@ -28,15 +28,15 @@
         self.barItem = barItem;
         [self updateView];
         [self bk_addEventHandler:^(id sender) {
-            if (self.action) self.action();
+            if (self.action) self.action(sender);
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 -(instancetype)init{
     if (self = [super init]) {
-        [self bk_addEventHandler:^(id sender) {
-            if (self.action) self.action();
+        [self bk_addEventHandler:^(UIButton *sender) {
+            if (self.action) self.action(sender);
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -45,6 +45,11 @@
     [self setTitle:nil forState:UIControlStateNormal];
     [self setBackgroundImage:nil forState:UIControlStateNormal];
     [self setBackgroundImage:nil forState:UIControlStateHighlighted];
+    [self setImage:nil forState:UIControlStateNormal];
+    [self setImage:nil forState:UIControlStateHighlighted];
+    [self setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
+    self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     if (self.barItem.type == WBNavBarItemTypeLabel) {
         [self setTitle:self.barItem.title forState:UIControlStateNormal];
@@ -53,6 +58,25 @@
         [self setTitle:self.barItem.title forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = self.barItem.font;
+    }
+    
+    if (self.barItem.type == WBNavBarItemTypeTitle) {
+        [self setTitle:self.barItem.title forState:UIControlStateNormal];
+        [self setTitleColor:self.barItem.textColorNormal forState:UIControlStateNormal];
+        [self setTitleColor:self.barItem.textColorHighlighted forState:UIControlStateHighlighted];
+        [self setTitle:self.barItem.title forState:UIControlStateNormal];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.font = self.barItem.font;
+        [self setBackgroundImage:[[UIImage imageNamed:@"navigationbar_filter_background_highlighted"] stretchableImageWithLeftCapWidth:1 topCapHeight:1] forState:UIControlStateHighlighted];
+        [self setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
+        [self setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+        CGFloat labelWidth = self.titleLabel.intrinsicContentSize.width;
+        CGFloat imageWidth = self.imageView.intrinsicContentSize.width;
+        self.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth + 17, 0, 0);
+        self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth - 10, 0, 0);
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(labelWidth + imageWidth + 20, 40));
+        }];
     }
     
     if (self.barItem.type == WBNavBarItemTypeButton) {
@@ -64,6 +88,7 @@
         [self setBackgroundImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] forState:UIControlStateHighlighted];
     }
+    [self layoutIfNeeded];
 }
 -(void)setBarItem:(WBNavBarItem *)barItem{
     if (_barItem != barItem) {
@@ -85,11 +110,7 @@
 @implementation WBNavicationBar
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
-        
-        self.blurRadius = 40;
-        self.tintColor  = [UIColor clearColor];
-        self.dynamic    = YES;
+        self.barTintColor = nil;
         
         self.layer.shadowColor   = [UIColor grayColor].CGColor;
         self.layer.shadowOffset  = CGSizeMake(0,-1);
@@ -99,7 +120,7 @@
         
         [self addSubview:self.titleBtn];
         [self.titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom).offset(-10);
+            make.bottom.equalTo(self.mas_bottom).offset(-6);
             make.centerX.equalTo(self.mas_centerX).offset(0);
         }];
         [self addSubview:self.rightBtn];
@@ -114,6 +135,10 @@
         }];
     }
     return self;
+}
+-(void)setTitleSelected:(BOOL)titleSelected{
+    _titleSelected = titleSelected;
+    self.titleBtn.selected = _titleSelected;
 }
 -(void)setLeftBarItem:(WBNavBarItem *)leftBarItem{
     if (_leftBarItem != leftBarItem) {
@@ -141,7 +166,7 @@
         _titleBtn = [[WBNavBarButton alloc] init];
         _titleBtn.tag = 1002;
         [_titleBtn bk_addEventHandler:^(id sender) {
-            if (_titleBarItem.action) _titleBarItem.action();
+            if (_titleBarItem.action) _titleBarItem.action(sender);
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return _titleBtn;
@@ -151,7 +176,7 @@
         _leftBtn = [[WBNavBarButton alloc] init];
         _leftBtn.tag = 1000;
         [_leftBtn bk_addEventHandler:^(id sender) {
-            if (_leftBarItem.action) _leftBarItem.action();
+            if (_leftBarItem.action) _leftBarItem.action(sender);
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftBtn;
@@ -161,7 +186,7 @@
         _rightBtn = [[WBNavBarButton alloc] init];
         _rightBtn.tag = 1001;
         [_rightBtn bk_addEventHandler:^(id sender) {
-            if (_rightBarItem.action) _rightBarItem.action();
+            if (_rightBarItem.action) _rightBarItem.action(sender);
         } forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightBtn;

@@ -213,7 +213,7 @@
         CGFloat y = item.y;
         CGFloat width = item.width;
         CGFloat height = item.height;
-        item.frame = CGRectMake(x, KSCREENHEIGHT + y, width, height);
+        item.frame = CGRectMake(x, kSCREENHEIGHT + y, width, height);
         item.alpha = 0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(item.animationDuration * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -237,7 +237,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * 0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:5 options:0 animations:^{
                 item.alpha = 0;
-                item.frame = CGRectMake(x, KSCREENHEIGHT + y, width, height);
+                item.frame = CGRectMake(x, kSCREENHEIGHT  + y, width, height);
             } completion:^(BOOL finished) {
                 
             }];
@@ -260,7 +260,7 @@
 }
 -(UIView *)toolsBar{
     if (!_toolsBar) {
-        _toolsBar = [[UIView alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49)];
+        _toolsBar = [[UIView alloc] initWithFrame:CGRectMake(0, kSCREENHEIGHT - 49, kSCREENWIDTH, 49)];
         _toolsBar.backgroundColor = [UIColor colorWithHex:0XFFFFFF alpha:1];
         
         _separateLayer = [CALayer layer];

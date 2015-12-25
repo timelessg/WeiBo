@@ -32,7 +32,7 @@
         _leftItem.type = WBNavBarItemTypeButton;
         _leftItem.normalImage = @"navigationbar_friendattention";
         _leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
-        _leftItem.action = ^(){
+        _leftItem.action = ^(id sender){
             
         };
     }
@@ -42,12 +42,13 @@
     if (!_titltItem) {
         WS(weakSelf);
         _titltItem = [WBNavBarItem new];
-        _titltItem.type = WBNavBarItemTypeLabel;
+        _titltItem.type = WBNavBarItemTypeTitle;
         _titltItem.title = @"郭郭郭Coding";
         _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
         _titltItem.font = [UIFont boldSystemFontOfSize:16];
-        _titltItem.action = ^(){
+        _titltItem.action = ^(UIButton *sender){
             [weakSelf.titlePopMenu show];
+            sender.selected = !sender.selected;
         };
     }
     return _titltItem;
@@ -59,7 +60,7 @@
         _rightItem.type = WBNavBarItemTypeButton;
         _rightItem.normalImage = @"navigationbar_icon_radar";
         _rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
-        _rightItem.action = ^(){
+        _rightItem.action = ^(id sender){
             [weakSelf.radarPopMenu show];
         };
     }
@@ -73,6 +74,7 @@
 }
 -(WBPopover *)titlePopMenu{
     if (!_titlePopMenu) {
+        WS(weakSelf);
         WBPopItem *home = [WBPopItem item:@"首页" selected:NO like:NO];
         WBPopItem *friend = [WBPopItem item:@"好友圈" selected:YES like:YES];
         WBPopItem *group = [WBPopItem item:@"群微博" selected:NO like:NO];
@@ -85,6 +87,9 @@
         _titlePopMenu = [[WBPopover alloc] initWithItems:items height:350 type:WBPopMenuTypeCenter selectIndex:^(NSString *item) {
             
         }];
+        _titlePopMenu.dismiess = ^(){
+            weakSelf.navicationController.navBar.titleSelected = NO;
+        };
     }
     return _titlePopMenu;
 }

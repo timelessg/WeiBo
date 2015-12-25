@@ -29,6 +29,6 @@ typedef NS_ENUM(NSUInteger,TarBarItemType) {
 
 typedef void(^SelectItemBlock)(NSUInteger itemIndex);
 
-@interface WBTabBar : FXBlurView
+@interface WBTabBar : UIToolbar
 -(instancetype)initWithFrame:(CGRect)frame items:(NSArray <WBTabBarItem *> *)items selected:(SelectItemBlock)selected;
 @end

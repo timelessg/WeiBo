@@ -10,5 +10,4 @@
 #import "BaseViewController.h"
 
 @interface WBProfileViewController : BaseViewController
--(void)reloadView;
 @end

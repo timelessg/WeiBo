@@ -51,7 +51,7 @@
         _rightItem.type = WBNavBarItemTypeButton;
         _rightItem.normalImage = @"navigationbar_icon_newchat";
         _rightItem.highlightedImage = @"navigationbar_icon_newchat_highlight";
-        _rightItem.action = ^(){
+        _rightItem.action = ^(id sender){
             [weakSelf.chatPopMenu show];
         };
     }

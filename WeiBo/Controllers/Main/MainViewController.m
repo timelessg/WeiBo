@@ -41,7 +41,7 @@
                 
             }
         };
-        [self presentViewController:authVC animated:YES completion:nil];
+        [self.navicationController pushViewController:authVC animated:YES];
     }
 }
 -(void)setupChildVC{
@@ -70,7 +70,7 @@
         WBTabBarItem *itemDiscover = [WBTabBarItem initWithTitle:@"发现" imageNormal:@"tabbar_discover" imageSelected:@"tabbar_discover_selected" type:TarBarItemTypeTitle];
         WBTabBarItem *itemProfile = [WBTabBarItem initWithTitle:@"我" imageNormal:@"tabbar_profile" imageSelected:@"tabbar_profile_selected" type:TarBarItemTypeTitle];
         
-        _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
+        _tabBar = [[WBTabBar alloc] initWithFrame:CGRectMake(0, kSCREENHEIGHT - 49, kSCREENWIDTH, 49) items:@[itemHome,itemMessage,itemCenter,itemDiscover,itemProfile] selected:^(NSUInteger itemIndex) {
             if (itemIndex == 2) {
                 [weakSelf.composeMenu showWithSelected:^(NSUInteger index) {
                     
@@ -91,7 +91,7 @@
 }
 -(UIScrollView *)pageScrollView{
     if (!_pageScrollView) {
-        _pageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, KSCREENHEIGHT - 49, kSCREENWIDTH, 49)];
+        _pageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kSCREENHEIGHT - 49, kSCREENWIDTH, 49)];
         _pageScrollView.contentSize = CGSizeMake(kSCREENWIDTH * 4,  0);
         _pageScrollView.scrollEnabled = NO;
     }

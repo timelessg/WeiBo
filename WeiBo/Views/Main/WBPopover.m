@@ -352,6 +352,9 @@
     }];
 }
 -(void)hide{
+    if (self.dismiess) {
+        self.dismiess();
+    }
     [UIView animateWithDuration:0.25 animations:^{
         _menuView.alpha = 0.0f;
     }completion:^(BOOL finished) {

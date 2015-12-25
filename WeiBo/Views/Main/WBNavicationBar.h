@@ -11,11 +11,12 @@
 
 typedef NS_ENUM(NSUInteger,WBNavBarItemType) {
     WBNavBarItemTypeLabel,
+    WBNavBarItemTypeTitle,
     WBNavBarItemTypeButton,
     WBNavBarItemTypeBack,
 };
 
-typedef void(^ActionBlock)(void);
+typedef void(^ActionBlock)(id sender);
 
 @interface WBNavBarItem : NSObject
 @property(nonatomic,strong)NSString *title;
@@ -37,8 +38,9 @@ typedef void(^ActionBlock)(void);
 @end
 
 
-@interface WBNavicationBar : FXBlurView
+@interface WBNavicationBar : UIToolbar
 @property(nonatomic,copy)NSString *title;
+@property(nonatomic,assign)BOOL titleSelected;
 @property(nonatomic,strong)WBNavBarItem *titleBarItem;
 @property(nonatomic,strong)WBNavBarItem *leftBarItem;
 @property(nonatomic,strong)WBNavBarItem *rightBarItem;
