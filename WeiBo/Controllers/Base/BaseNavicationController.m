@@ -14,14 +14,6 @@
 @implementation BaseNavicationController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBarHidden = YES;
-    [self.view addSubview:self.navBar];
-}
--(WBNavicationBar *)navBar{
-    if (!_navBar) {
-        _navBar = [[WBNavicationBar alloc] initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, kNavBarHeight)];
-    }
-    return _navBar;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,8 +10,6 @@
 #import <BlocksKit+UIKit.h>
 
 @interface WBWebAuthViewController () <UIWebViewDelegate>
-@property(nonatomic,strong)WBNavBarItem *titltItem;
-@property(nonatomic,strong)WBNavBarItem *leftItem;
 @end
 
 @implementation WBWebAuthViewController
@@ -22,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavBar];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, kNavicationBarHeight, kSCREENWIDTH, kSCREENHEIGHT - kNavicationBarHeight)];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     NSString *url = @"https://api.weibo.com/oauth2/authorize?client_id=2159567536&redirect_uri=http://sns.whalecloud.com/sina2/callback&response_type=code&display=mobile";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
@@ -34,32 +32,23 @@
     [super reloadView];
     [self setupNavBar];
 }
--(WBNavBarItem *)titltItem{
-    if (!_titltItem) {
-        _titltItem = [WBNavBarItem new];
-        _titltItem.type = WBNavBarItemTypeLabel;
-        _titltItem.title = @"应用授权";
-        _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-        _titltItem.font = [UIFont boldSystemFontOfSize:16];
-    }
-    return _titltItem;
-}
--(WBNavBarItem *)leftItem{
-    if (!_leftItem) {
-        WS(weakSelf);
-        _leftItem = [WBNavBarItem new];
-        _leftItem.type = WBNavBarItemTypeButton;
-        _leftItem.normalImage = @"camera_close";
-        _leftItem.highlightedImage = @"camera_close_highlighted";
-        _leftItem.action = ^(id sender){
-            [weakSelf.navicationController popViewControllerAnimated:YES];
-        };
-    }
-    return _leftItem;
-}
 -(void)setupNavBar{
-    self.navicationController.navBar.titleBarItem = self.titltItem;
-    self.navicationController.navBar.leftBarItem = self.leftItem;
+    WS(weakSelf);
+    WBNavBarItem *titltItem = [WBNavBarItem new];
+    titltItem.type = WBNavBarItemTypeLabel;
+    titltItem.title = @"应用授权";
+    titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
+    titltItem.font = [UIFont boldSystemFontOfSize:16];    
+    self.navigationItem.titleView = [[WBNavBarButton alloc] initWithItem:titltItem];
+    
+    WBNavBarItem *leftItem = [WBNavBarItem new];
+    leftItem.type = WBNavBarItemTypeButton;
+    leftItem.normalImage = @"camera_close";
+    leftItem.highlightedImage = @"camera_close_highlighted";
+    leftItem.action = ^(id sender){
+        [weakSelf.navicationController popViewControllerAnimated:YES];
+    };
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[WBNavBarButton alloc] initWithItem:leftItem]];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)_webView
 {

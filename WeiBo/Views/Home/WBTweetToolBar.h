@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WBTweetToolBar : UIView
-
+@property(nonatomic,copy)void (^didSlectedItem)(NSUInteger index);
 @end

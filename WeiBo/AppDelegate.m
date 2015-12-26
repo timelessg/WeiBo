@@ -23,8 +23,8 @@
     
     MainViewController *mainVC = [[MainViewController alloc] init];
     
-    BaseNavicationController *baseNav = [[BaseNavicationController alloc] initWithRootViewController:mainVC];
-    self.window.rootViewController = baseNav;
+//    BaseNavicationController *baseNav = [[BaseNavicationController alloc] initWithRootViewController:mainVC];
+    self.window.rootViewController = mainVC;
     
     [self.window makeKeyAndVisible];
     

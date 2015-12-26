@@ -21,17 +21,16 @@
 @interface MainViewController ()
 @property(nonatomic,strong)WBTabBar *tabBar;
 @property(nonatomic,strong)WBComposeMenu *composeMenu;
-@property(nonatomic,strong)UIScrollView *pageScrollView;
+@property(nonatomic,strong)BaseNavicationController *currentVC;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showAuth];
-    [self setupChildVC];
-    
     [self.view addSubview:self.tabBar];
+//    [self showAuth];
+    [self setupChildVC];
 }
 -(void)showAuth{
     if (![WBUser isLogin]) {
@@ -45,14 +44,12 @@
     }
 }
 -(void)setupChildVC{
-    [self.view addSubview:self.pageScrollView];
-    
     NSArray *vcClassNameArray = @[@"WBHomeViewController",@"WBMessageViewController",@"WBDiscoverViewController",@"WBProfileViewController"];
     [vcClassNameArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         Class class = objc_getClass([obj UTF8String]);
-        [self addChildViewController:[class new]];
+        [self addChildViewController:[[BaseNavicationController alloc] initWithRootViewController:[class new]]];
     }];
-    [self.pageScrollView addSubview:[[self.childViewControllers firstObject] view]];
+    [self.view insertSubview:[[self.childViewControllers firstObject] view] belowSubview:self.tabBar];
 }
 -(WBComposeMenu *)composeMenu{
     if (!_composeMenu) {
@@ -78,24 +75,13 @@
                 return ;
             }
             NSUInteger index = (itemIndex >= 2) ? itemIndex - 1 : itemIndex;
-            BaseViewController *vc = weakSelf.childViewControllers[index];
-            if (!vc.isViewLoaded) {
-                vc.view.frame = CGRectMake(index * kSCREENWIDTH, 0, weakSelf.view.width, weakSelf.view.height);
-                [weakSelf.pageScrollView addSubview:vc.view];
-            }
-            [vc reloadView];
-            weakSelf.pageScrollView.contentOffset = CGPointMake(index * kSCREENWIDTH, 0);
+            BaseNavicationController *vc = weakSelf.childViewControllers[index];
+            [self.currentVC.view removeFromSuperview];
+            [self.view insertSubview:vc.view belowSubview:self.tabBar];
+            self.currentVC = vc;
         }];
     }
     return _tabBar;
-}
--(UIScrollView *)pageScrollView{
-    if (!_pageScrollView) {
-        _pageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kSCREENHEIGHT - 49, kSCREENWIDTH, 49)];
-        _pageScrollView.contentSize = CGSizeMake(kSCREENWIDTH * 4,  0);
-        _pageScrollView.scrollEnabled = NO;
-    }
-    return _pageScrollView;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

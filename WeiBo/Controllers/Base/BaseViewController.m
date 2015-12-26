@@ -23,9 +23,7 @@
     [super viewDidLoad];
 }
 -(void)reloadView{
-    self.navicationController.navBar.leftBarItem = nil;
-    self.navicationController.navBar.titleBarItem = nil;
-    self.navicationController.navBar.rightBarItem = nil;
+    
 }
 -(BaseNavicationController *)navicationController{
     return (BaseNavicationController *)self.navigationController;

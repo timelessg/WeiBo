@@ -7,14 +7,13 @@
 //
 
 #import "WBHomeViewController.h"
+#import "WBWebAuthViewController.h"
+#import "WBActionSheet.h"
 
 @interface WBHomeViewController ()
 @property(nonatomic,strong)WBPopover *titlePopMenu;
 @property(nonatomic,strong)WBPopover *radarPopMenu;
-
-@property(nonatomic,strong)WBNavBarItem *leftItem;
-@property(nonatomic,strong)WBNavBarItem *titltItem;
-@property(nonatomic,strong)WBNavBarItem *rightItem;
+@property(nonatomic,strong)WBNavBarButton *titleBarBtn;
 @end
 
 @implementation WBHomeViewController
@@ -23,54 +22,39 @@
     [self setupNavBar];
 }
 -(void)reloadView{
-    [super reloadView];
     [self setupNavBar];
 }
--(WBNavBarItem *)leftItem{
-    if (!_leftItem) {
-        _leftItem = [WBNavBarItem new];
-        _leftItem.type = WBNavBarItemTypeButton;
-        _leftItem.normalImage = @"navigationbar_friendattention";
-        _leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
-        _leftItem.action = ^(id sender){
-            
-        };
-    }
-    return _leftItem;
-}
--(WBNavBarItem *)titltItem{
-    if (!_titltItem) {
-        WS(weakSelf);
-        _titltItem = [WBNavBarItem new];
-        _titltItem.type = WBNavBarItemTypeTitle;
-        _titltItem.title = @"郭郭郭Coding";
-        _titltItem.textColorNormal = [UIColor colorWithHex:0x525252];
-        _titltItem.font = [UIFont boldSystemFontOfSize:16];
-        _titltItem.action = ^(UIButton *sender){
-            [weakSelf.titlePopMenu show];
-            sender.selected = !sender.selected;
-        };
-    }
-    return _titltItem;
-}
--(WBNavBarItem *)rightItem{
-    if (!_rightItem) {
-        WS(weakSelf);
-        _rightItem = [WBNavBarItem new];
-        _rightItem.type = WBNavBarItemTypeButton;
-        _rightItem.normalImage = @"navigationbar_icon_radar";
-        _rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
-        _rightItem.action = ^(id sender){
-            [weakSelf.radarPopMenu show];
-        };
-    }
-    return _rightItem;
-}
 -(void)setupNavBar{
-    [super reloadView];
-    self.navicationController.navBar.rightBarItem = self.rightItem;
-    self.navicationController.navBar.titleBarItem = self.titltItem;
-    self.navicationController.navBar.leftBarItem  = self.leftItem;
+    WS(weakSelf);
+    WBNavBarItem *titleItem = [WBNavBarItem new];
+    titleItem.type = WBNavBarItemTypeTitle;
+    titleItem.title = @"郭郭郭Coding";
+    titleItem.textColorNormal = [UIColor colorWithHex:0x525252];
+    titleItem.font = [UIFont boldSystemFontOfSize:16];
+    titleItem.action = ^(UIButton *sender){
+        sender.selected = !sender.selected;
+        [weakSelf.titlePopMenu show];
+    };
+    self.titleBarBtn = [[WBNavBarButton alloc] initWithItem:titleItem];
+    self.navigationItem.titleView = self.titleBarBtn;
+    
+    WBNavBarItem *rightItem = [WBNavBarItem new];
+    rightItem.type = WBNavBarItemTypeButton;
+    rightItem.normalImage = @"navigationbar_icon_radar";
+    rightItem.highlightedImage = @"navigationbar_icon_radar_highlighted";
+    rightItem.action = ^(id sender){
+        [weakSelf.radarPopMenu show];
+    };
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[WBNavBarButton alloc] initWithItem:rightItem]];
+    
+    WBNavBarItem *leftItem = [WBNavBarItem new];
+    leftItem.type = WBNavBarItemTypeButton;
+    leftItem.normalImage = @"navigationbar_friendattention";
+    leftItem.highlightedImage = @"navigationbar_friendattention_highlighted";
+    leftItem.action = ^(id sender){
+        
+    };
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[[WBNavBarButton alloc] initWithItem:leftItem]];
 }
 -(WBPopover *)titlePopMenu{
     if (!_titlePopMenu) {
@@ -85,10 +69,12 @@
         
         NSArray *items = @[@{@"section":@"",@"items":@[home,friend,group,my]},@{@"section":@"我的分组",@"items":@[like,private]},@{@"section":@"其他",@"items":@[other]}];
         _titlePopMenu = [[WBPopover alloc] initWithItems:items height:350 type:WBPopMenuTypeCenter selectIndex:^(NSString *item) {
-            
+            [WBActionSheet showItemItems:@[@"啊啊啊",@"啊啊啊",@"啊啊啊",@"啊啊啊",@"啊啊啊",@"啊啊啊"] select:^(NSUInteger index) {
+                
+            }];
         }];
         _titlePopMenu.dismiess = ^(){
-            weakSelf.navicationController.navBar.titleSelected = NO;
+            weakSelf.titleBarBtn.selected = NO;
         };
     }
     return _titlePopMenu;

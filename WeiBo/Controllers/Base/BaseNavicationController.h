@@ -10,5 +10,4 @@
 #import "WBNavicationBar.h"
 
 @interface BaseNavicationController : UINavigationController
-@property(nonatomic,strong)WBNavicationBar *navBar;
 @end

@@ -2736,6 +2736,7 @@
 		65624EC51C2AF332006DD872 /* WBTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624EC41C2AF332006DD872 /* WBTweetCell.m */; };
 		65624EC81C2AF372006DD872 /* WBTweetToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624EC71C2AF372006DD872 /* WBTweetToolBar.m */; };
 		65624ECB1C2AF386006DD872 /* WBTweetPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624ECA1C2AF386006DD872 /* WBTweetPhotos.m */; };
+		656BBF0A1C2D3F65008878D0 /* WBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 656BBF091C2D3F65008878D0 /* WBActionSheet.m */; };
 		6573659F1C1020080066BC31 /* WBWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6573659E1C1020080066BC31 /* WBWebAuthViewController.m */; };
 		657365A21C1020B40066BC31 /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A11C1020B40066BC31 /* WBUser.m */; };
 		657365A71C103DDA0066BC31 /* WBNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 657365A61C103DDA0066BC31 /* WBNetAPIClient.m */; };
@@ -5497,6 +5498,8 @@
 		65624EC71C2AF372006DD872 /* WBTweetToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTweetToolBar.m; sourceTree = "<group>"; };
 		65624EC91C2AF386006DD872 /* WBTweetPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTweetPhotos.h; sourceTree = "<group>"; };
 		65624ECA1C2AF386006DD872 /* WBTweetPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTweetPhotos.m; sourceTree = "<group>"; };
+		656BBF081C2D3F65008878D0 /* WBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBActionSheet.h; sourceTree = "<group>"; };
+		656BBF091C2D3F65008878D0 /* WBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBActionSheet.m; sourceTree = "<group>"; };
 		6573659D1C1020080066BC31 /* WBWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWebAuthViewController.h; sourceTree = "<group>"; };
 		6573659E1C1020080066BC31 /* WBWebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBWebAuthViewController.m; sourceTree = "<group>"; };
 		657365A01C1020B40066BC31 /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
@@ -8459,6 +8462,8 @@
 				65D5E8AF1C15B9AE00CD5442 /* WBPopover.m */,
 				658100C21C1DB41400B7A2B6 /* WBComposeMenu.h */,
 				658100C31C1DB41400B7A2B6 /* WBComposeMenu.m */,
+				656BBF081C2D3F65008878D0 /* WBActionSheet.h */,
+				656BBF091C2D3F65008878D0 /* WBActionSheet.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -11383,6 +11388,7 @@
 				657365AD1C10491D0066BC31 /* WBStatuse.m in Sources */,
 				6510A0771C0F2BD0000F1D39 /* MainViewController.m in Sources */,
 				658100C41C1DB41400B7A2B6 /* WBComposeMenu.m in Sources */,
+				656BBF0A1C2D3F65008878D0 /* WBActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

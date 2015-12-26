@@ -34,14 +34,5 @@ typedef void(^ActionBlock)(id sender);
 
 @interface WBNavBarButton : UIButton
 @property(nonatomic,strong)WBNavBarItem *barItem;
--(instancetype)initWithBarItem:(WBNavBarItem *)barItem;
-@end
-
-
-@interface WBNavicationBar : UIToolbar
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,assign)BOOL titleSelected;
-@property(nonatomic,strong)WBNavBarItem *titleBarItem;
-@property(nonatomic,strong)WBNavBarItem *leftBarItem;
-@property(nonatomic,strong)WBNavBarItem *rightBarItem;
+-(instancetype)initWithItem:(WBNavBarItem *)item;
 @end
